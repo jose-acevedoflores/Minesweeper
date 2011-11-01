@@ -27,18 +27,20 @@ public class Minesweeper {
 		JPanel all = new JPanel();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 500);
+		frame.setSize(500, 650);
 		
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
 		all.setBorder(new BevelBorder(BevelBorder.RAISED));
 		
-		NumberLabel n = new NumberLabel();
-		MineGenerator mg = new MineGenerator();
-		
 		//Setting the menus
 		Menus menuBar = new Menus();
 		frame.setMenuBar(menuBar.getMenuBar());
+		
+		//Set the mines
+		MineGenerator mg = new MineGenerator();
+		LabelUnderTile labelUnderTile = new LabelUnderTile(mg.getBombLocations());
+		FrontTile tilesAndLabels = new FrontTile(labelUnderTile.getLabels());
 	
 		//Adding empty space between the menus and the timer panel.
 		all.add(Box.createRigidArea(new Dimension(0,25)));
@@ -53,7 +55,8 @@ public class Minesweeper {
 		
 		//Adding the playing area.
 		playPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		playPanel.setMaximumSize(new Dimension(465, 300));
+		playPanel.add(tilesAndLabels.getPlayPanel());
+		playPanel.setMaximumSize(new Dimension(465, 465));
 		all.add(playPanel);
 		
 		frame.add(all);

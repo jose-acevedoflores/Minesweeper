@@ -6,9 +6,14 @@ import java.awt.MenuItem;
 
 public class Menus {
 
-	private Menu game;
-	private Menu help;
 	private MenuBar menuBar;
+	
+	private Menu game;
+	private MenuItem newGame;
+
+	private Menu help;
+	private MenuItem aboutMinesweeper;
+	
 	
 	/**
 	 * Create the menus that will appear on the frame.
@@ -16,9 +21,14 @@ public class Menus {
 	public Menus()
 	{
 		menuBar = new MenuBar();
-		game = new Menu("Game");
-		help = new Menu("Help"); 
 		
+		game = new Menu("Game");
+		newGame = new MenuItem("New");
+		game.add(newGame);
+		
+		help = new Menu("Help"); 
+		aboutMinesweeper = new MenuItem("About Minesweeper");
+		help.add(aboutMinesweeper);
 		
 		menuBar.add(game);
 		menuBar.add(help);

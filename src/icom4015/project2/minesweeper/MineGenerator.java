@@ -21,6 +21,7 @@ public class MineGenerator {
 		for(int i = 0; i < 10; i++)
 		{
 			bombLocations[i] = 1+generator.nextInt(80);
+			//Check bug: if a random number repeats then we get less than ten bombs
 		}
 		
 		
@@ -38,7 +39,15 @@ public class MineGenerator {
 			}
 		}
 	
+	}
 	
+	/**
+	 * Gets the array containing the bomb locations.
+	 * @return the bomb locations
+	 */
+	public int[] getBombLocations()
+	{
+		return bombLocations;
 	}
 	
 }
