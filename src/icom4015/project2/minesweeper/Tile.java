@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * @author 
  *
  */
-public class FrontTile {
+public class Tile {
 	
 
 	private ImageIcon image;
@@ -22,7 +22,7 @@ public class FrontTile {
 	 * Creates the panel that contains the front tile and the corresponding label below it.
 	 * It also adds the mouseListeners 
 	 */
-	public FrontTile(LabelUnderTile t)
+	public Tile(LabelUnderTile t)
 	{
 		labelUnderTile = t;
 		image = new ImageIcon("images/tile.png");

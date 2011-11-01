@@ -8,7 +8,7 @@ import javax.swing.border.BevelBorder;
 
 public class GameFunctions {
 	
-	private FrontTile[] frontTiles;
+	private Tile[] frontTiles;
 	private MineGenerator mineGenerator;
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
@@ -22,7 +22,7 @@ public class GameFunctions {
 	public GameFunctions( MineGenerator mg)
 	{
 		mineGenerator = mg;
-		frontTiles = new FrontTile[81];
+		frontTiles = new Tile[81];
 	
 		playPanelFront = new JPanel(new GridLayout(9,9));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -53,7 +53,7 @@ public class GameFunctions {
 			else
 				labelUnderTile = new LabelUnderTile(false);
 			
-			frontTiles[i] = new FrontTile(labelUnderTile);
+			frontTiles[i] = new Tile(labelUnderTile);
 		}
 		
 		for(int a = 0; a < frontTiles.length; a++)
