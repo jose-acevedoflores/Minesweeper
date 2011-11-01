@@ -37,10 +37,6 @@ public class Minesweeper {
 		Menus menuBar = new Menus();
 		frame.setMenuBar(menuBar.getMenuBar());
 		
-		//Set the game
-		MineGenerator mg = new MineGenerator();
-		GameFunctions gameFunctions = new GameFunctions(mg);
-		gameFunctions.setGameReady();
 		
 		//Adding empty space between the menus and the timer panel.
 		all.add(Box.createRigidArea(new Dimension(0,25)));
@@ -53,6 +49,11 @@ public class Minesweeper {
 		//Adding empty space between the two components
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
+		//Set the game
+		MineGenerator mg = new MineGenerator();
+		GameFunctions gameFunctions = new GameFunctions(mg);
+		gameFunctions.setGameReady();
+
 		//Adding the playing area.
 		all.add(gameFunctions.getPlayPanel());
 		
