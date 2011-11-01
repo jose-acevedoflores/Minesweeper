@@ -12,31 +12,27 @@ import javax.swing.JPanel;
  */
 public class FrontTile {
 	
-	private JLabel[] frontTiles = new JLabel[81];
-	private JPanel labelPanel;
-	private JPanel frontPanel;
+
+	private FrontTile frontTile;
+	private LabelUnderTile labelUnderTile;
 	
 	/**
 	 * Creates the panel that contains the front tile and the corresponding label below it.
 	 * It also adds the mouseListeners 
 	 */
-	public FrontTile(JLabel[] labelsUnderTiles)
+	public FrontTile(LabelUnderTile t)
 	{
-		labelPanel = new JPanel(new GridLayout(9,9));
+		labelUnderTile = t;
 		
-		for(int i = 0; i < 81 ; i++)
-		{
-			labelPanel.add(labelsUnderTiles[i]);
-		}
 	}
 
 	/**
-	 * Gets the playing area.
-	 * @return the play area.
+	 * Gets the label associated with this position.
+	 * @return the label
 	 */
-	public JPanel getPlayPanel()
+	public JLabel getUnderTileLabel()
 	{
-		return labelPanel;
+		return labelUnderTile.getLabel();
 	}
 	
 }

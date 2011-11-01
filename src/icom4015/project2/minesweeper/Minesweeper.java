@@ -1,6 +1,7 @@
 package icom4015.project2.minesweeper;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,7 +24,6 @@ public class Minesweeper {
 		JFrame frame = new JFrame("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/mine2.png");
 		JPanel timerAndBombPanel = new JPanel();
-		JPanel playPanel = new JPanel();
 		JPanel all = new JPanel();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,11 +37,11 @@ public class Minesweeper {
 		Menus menuBar = new Menus();
 		frame.setMenuBar(menuBar.getMenuBar());
 		
-		//Set the mines
+		//Set the game
 		MineGenerator mg = new MineGenerator();
-		LabelUnderTile labelUnderTile = new LabelUnderTile(mg.getBombLocations());
-		FrontTile tilesAndLabels = new FrontTile(labelUnderTile.getLabels());
-	
+		GameFunctions gameFunctions = new GameFunctions(mg);
+		gameFunctions.setGameReady();
+		
 		//Adding empty space between the menus and the timer panel.
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
@@ -54,10 +54,8 @@ public class Minesweeper {
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
 		//Adding the playing area.
-		playPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		playPanel.add(tilesAndLabels.getPlayPanel());
-		playPanel.setMaximumSize(new Dimension(465, 465));
-		all.add(playPanel);
+		
+		all.add(gameFunctions.getPlayPanel());
 		
 		frame.add(all);
 		frame.setIconImage(icon.getImage());

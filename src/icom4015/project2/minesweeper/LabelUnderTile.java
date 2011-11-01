@@ -14,45 +14,31 @@ import javax.swing.JLabel;
  */
 public class LabelUnderTile {
 
-	private JLabel[] labelUnderTiles = new JLabel[81];
 	private ImageIcon image;
+	private JLabel label;
 	
 	/**
-	 * Creates the labels that go under the front tiles
+	 * Creates the labels that goes under the front tiles
 	 * @param bombLocations the location of the bombs
 	 */
-	public LabelUnderTile(int[] bombLocations)
+	public LabelUnderTile(boolean bombHere)
 	{
-		int c = 0;
-		for(int i = 0 ; i < 81 ; i++)
+		if(bombHere)
 		{
-			if(i == bombLocations[c])
-			{
-				image = new ImageIcon("images/mine.png");
-				Icon img = (Icon) image;
-				labelUnderTiles[i] = new JLabel(img);
-				c++;
-				if(c==10)
-					c=0;
-			}
-			
-			else
-			{
-				image = new ImageIcon("images/amir2.JPG");
-				Icon img = (Icon) image;
-				labelUnderTiles[i] = new JLabel(img);
-			}
+			image = new ImageIcon("images/mine.png");
 		}
+		else
+		{
+			image = new ImageIcon("images/amir2.JPG");
+		}
+		
+		label = new JLabel(image);
 	}
 	
 	
-	/**
-	 * Gets all the labels under the tiles.
-	 * @return the label
-	 */
-	public JLabel[] getLabels()
+	public JLabel getLabel()
 	{
-		return labelUnderTiles;
+		return label;
 	}
 	
 }
