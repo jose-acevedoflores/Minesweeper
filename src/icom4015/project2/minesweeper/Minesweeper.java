@@ -34,6 +34,8 @@ public class Minesweeper {
 		all.setBorder(new BevelBorder(BevelBorder.RAISED));
 		
 		NumberLabel n = new NumberLabel();
+		MineGenerator mg = new MineGenerator();
+		
 		//Setting the menus
 		Menus menuBar = new Menus();
 		frame.setMenuBar(menuBar.getMenuBar());
