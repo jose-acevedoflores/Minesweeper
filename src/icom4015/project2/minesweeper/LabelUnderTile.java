@@ -65,4 +65,12 @@ public class LabelUnderTile {
 		return numberHere;
 	}
 	
+	/**
+	 * Set the number of bombs that surround this tile.
+	 */
+	private void setNumbers()
+	{
+		
+	}
+	
 }
