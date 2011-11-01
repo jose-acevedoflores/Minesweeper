@@ -10,7 +10,8 @@ public class GameFunctions {
 	
 	private FrontTile[] frontTiles;
 	private MineGenerator mineGenerator;
-	private JPanel playPanel;
+	private JPanel playPanelFront;
+	private JPanel playPanelBelow;
 	
 	/**
 	 * Creates a game functions object that sets the playing area size (playPanel) and the 
@@ -23,9 +24,13 @@ public class GameFunctions {
 		mineGenerator = mg;
 		frontTiles = new FrontTile[81];
 	
-		playPanel = new JPanel(new GridLayout(9,9));
-		playPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		playPanel.setMaximumSize(new Dimension(465, 465));
+		playPanelFront = new JPanel(new GridLayout(9,9));
+		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		playPanelFront.setMaximumSize(new Dimension(465, 465));
+		
+		playPanelBelow = new JPanel(new GridLayout(9,9));
+		playPanelBelow.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		playPanelBelow.setMaximumSize(new Dimension(465, 465));
 	}
 
 	/**
@@ -53,14 +58,18 @@ public class GameFunctions {
 		
 		for(int a = 0; a < frontTiles.length; a++)
 		{
-			playPanel.add(frontTiles[a].getUnderTileLabel());
+			playPanelFront.add(frontTiles[a].getFrontTileLabel());
+			playPanelBelow.add(frontTiles[a].getUnderTileLabel());
 		}
 	}
 	
-	
+	/**
+	 * Gets the playing panel with all the labels and tiles set.
+	 * @return the playPanel
+	 */
 	public JPanel getPlayPanel()
 	{
-		return playPanel;
+		return playPanelFront;
 	}
 	
 }

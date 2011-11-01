@@ -2,6 +2,7 @@ package icom4015.project2.minesweeper;
 
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,7 +14,8 @@ import javax.swing.JPanel;
 public class FrontTile {
 	
 
-	private FrontTile frontTile;
+	private ImageIcon image;
+	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;
 	
 	/**
@@ -23,16 +25,26 @@ public class FrontTile {
 	public FrontTile(LabelUnderTile t)
 	{
 		labelUnderTile = t;
-		
+		image = new ImageIcon("images/tile.png");
+		frontTile = new JLabel(image);
 	}
 
 	/**
-	 * Gets the label associated with this position.
+	 * Gets the under label (bomb, number or nothing) associated with this position.
 	 * @return the label
 	 */
 	public JLabel getUnderTileLabel()
 	{
 		return labelUnderTile.getLabel();
+	}
+	
+	/**
+	 * Gets the front label (tile, flag or ? sign) associated with this position.
+	 * @return the label
+	 */
+	public JLabel getFrontTileLabel()
+	{
+		return frontTile;
 	}
 	
 }

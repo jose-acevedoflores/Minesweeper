@@ -16,6 +16,7 @@ public class LabelUnderTile {
 
 	private ImageIcon image;
 	private JLabel label;
+	private boolean bombHere;
 	
 	/**
 	 * Creates the labels that goes under the front tiles
@@ -32,13 +33,26 @@ public class LabelUnderTile {
 			image = new ImageIcon("images/amir2.JPG");
 		}
 		
+		this.bombHere = bombHere;
 		label = new JLabel(image);
 	}
 	
-	
+	/**
+	 * Gets the label associated with this position.
+	 * @return the label
+	 */
 	public JLabel getLabel()
 	{
 		return label;
+	}
+	
+	/**
+	 * Checks if there is a bomb in this tile.
+	 * @return true if there is a bomb, false otherwise.
+	 */
+	public boolean bombHere()
+	{
+		return bombHere;
 	}
 	
 }
