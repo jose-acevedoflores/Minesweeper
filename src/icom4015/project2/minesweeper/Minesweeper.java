@@ -54,7 +54,6 @@ public class Minesweeper {
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
 		//Adding the playing area.
-		
 		all.add(gameFunctions.getPlayPanel());
 		
 		frame.add(all);
