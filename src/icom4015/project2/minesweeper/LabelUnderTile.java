@@ -17,6 +17,7 @@ public class LabelUnderTile {
 	private ImageIcon image;
 	private JLabel label;
 	private boolean bombHere;
+	private int numberHere=0;
 	
 	/**
 	 * Creates the labels that goes under the front tiles
@@ -53,6 +54,23 @@ public class LabelUnderTile {
 	public boolean bombHere()
 	{
 		return bombHere;
+	}
+	
+	/**
+	 * Gets the number associated with this position.
+	 * @return the number.
+	 */
+	public int getNumberHere()
+	{
+		return numberHere;
+	}
+	
+	/**
+	 * Set the number of bombs that surround this tile.
+	 */
+	private void setNumbers()
+	{
+		
 	}
 	
 }

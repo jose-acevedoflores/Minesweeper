@@ -19,9 +19,9 @@ public class GameFunctions {
 	 * @param ft the frontTile array
 	 * @param mg the mineGenerator 
 	 */
-	public GameFunctions( MineGenerator mg)
+	public GameFunctions()
 	{
-		mineGenerator = mg;
+		mineGenerator =  new MineGenerator();
 		frontTiles = new Tile[81];
 	
 		playPanelFront = new JPanel(new GridLayout(9,9));

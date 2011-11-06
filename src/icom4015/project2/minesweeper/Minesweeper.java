@@ -50,8 +50,7 @@ public class Minesweeper {
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
 		//Set the game
-		MineGenerator mg = new MineGenerator();
-		GameFunctions gameFunctions = new GameFunctions(mg);
+		GameFunctions gameFunctions = new GameFunctions();
 		gameFunctions.setGameReady();
 
 		//Adding the playing area.
