@@ -69,7 +69,7 @@ public class GameFunctions {
 	 */
 	public JPanel getPlayPanel()
 	{
-		return playPanelFront;
+		return playPanelBelow;
 	}
 	
 }
