@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 public class Tile implements MouseListener{
 	
 	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
-	private static ImageIcon questionMark = new ImageIcon("images/tile2.png");
+	private static ImageIcon questionMark = new ImageIcon("images/Question_mark.png");
 	private static ImageIcon normalTile = new ImageIcon("images/tile.png");
 	private static int bombFlags;
 	private String currentTile;
@@ -62,8 +62,23 @@ public class Tile implements MouseListener{
 		return bombFlags;
 	}
 	
+	public boolean checkBomb()
+	{
+		return labelUnderTile.bombHere();
+	}
+	
+	public void setUnderTileNumber(int n)
+	{
+		labelUnderTile.setNumber(n);
+	}
+	
+	
+	
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		
 		ImageIcon img;
 		if(arg0.getButton() == MouseEvent.BUTTON1)
 		{

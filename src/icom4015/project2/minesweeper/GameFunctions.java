@@ -66,6 +66,28 @@ public class GameFunctions {
 		}
 		
 		//In this loop we fill the labels near the bombs with numbers.
+		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
+		for(int i = 1 ; i < 8; i++)
+		{
+			for(int j = 1 ; j < 8 ; j++)
+			{
+				int bombsNear=0;
+				if(!frontTiles[i][j].checkBomb())
+				{
+					for(int a = i-1; a < i+2 ; a++)
+					{
+						for(int b = j-1 ; b < j+2 ; b++)
+						{
+							if(frontTiles[a][b].checkBomb())
+							{
+								bombsNear++;
+							}
+						}
+					}
+					frontTiles[i][j].setUnderTileNumber(bombsNear);
+				}//end if
+			}
+		}
 		
 		
 		//Adding the tiles to the panels.
@@ -85,7 +107,7 @@ public class GameFunctions {
 	 */
 	public JPanel getPlayPanel()
 	{
-		return playPanelFront;
+		return playPanelBelow;
 	}
 	
 }

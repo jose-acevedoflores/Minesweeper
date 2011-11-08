@@ -67,9 +67,11 @@ public class LabelUnderTile {
 	/**
 	 * Set the number of bombs that surround this tile.
 	 */
-	public void setNumbers(int n)
+	public void setNumber(int n)
 	{
-		
+		numberHere = n;
+		label = new JLabel("      "+Integer.toString(numberHere));
+		label.setSize(48, 48);
 	}
 	
 }

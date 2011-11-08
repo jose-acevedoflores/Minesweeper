@@ -21,7 +21,7 @@ public class Minesweeper {
 	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Minesweeper");
-		ImageIcon icon = new ImageIcon("images/mine2.png");
+		ImageIcon icon = new ImageIcon("images/mine-logo.png");
 		JPanel timerAndBombPanel = new JPanel();
 		JPanel all = new JPanel();
 		
