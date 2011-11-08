@@ -1,9 +1,7 @@
 package icom4015.project2.minesweeper;
 
-import java.awt.Component;
-import java.awt.Graphics;
 
-import javax.swing.Icon;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -68,7 +66,7 @@ public class LabelUnderTile {
 	/**
 	 * Set the number of bombs that surround this tile.
 	 */
-	private void setNumbers(int n)
+	public void setNumbers(int n)
 	{
 		
 	}
