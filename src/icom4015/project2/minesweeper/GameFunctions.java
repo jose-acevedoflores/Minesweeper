@@ -76,7 +76,7 @@ public class GameFunctions {
 	
 	/**
 	 * Gets the playing panel with all the labels and tiles set.
-	 * @return the playPanel
+	 * @return the playPanel 
 	 */
 	public JPanel getPlayPanel()
 	{

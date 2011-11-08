@@ -15,7 +15,7 @@ public class LabelUnderTile {
 	private ImageIcon image;
 	private JLabel label;
 	private boolean bombHere;
-	private int numberHere=0;
+	private int numberHere;
 	
 	/**
 	 * Creates the labels that goes under the front tiles
@@ -32,6 +32,7 @@ public class LabelUnderTile {
 			image = new ImageIcon("images/amir2.JPG");
 		}
 		
+		numberHere=0;
 		this.bombHere = bombHere;
 		label = new JLabel(image);
 	}
