@@ -1,7 +1,6 @@
 package icom4015.project2.minesweeper;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
