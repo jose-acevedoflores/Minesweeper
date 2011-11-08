@@ -31,7 +31,7 @@ public class Tile implements MouseListener{
 		labelUnderTile = t;
 		frontTile = new JLabel(normalTile);
 		frontTile.addMouseListener(this);
-		currentTile= "normalTile";
+		currentTile = "normalTile";
 	}
 
 	/**
@@ -65,6 +65,8 @@ public class Tile implements MouseListener{
 				currentTile = "under";
 			}
 		}
+		
+		//Right click pressed
 		else if(arg0.getButton() == MouseEvent.BUTTON3)
 		{	
 			if(currentTile.equals("flag"))

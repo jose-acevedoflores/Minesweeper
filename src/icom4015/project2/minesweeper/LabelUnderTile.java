@@ -25,7 +25,7 @@ public class LabelUnderTile {
 	{
 		if(bombHere)
 		{
-			image = new ImageIcon("images/mine.png");
+			image = new ImageIcon("images/bomb.jpg");
 		}
 		else
 		{
