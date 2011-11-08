@@ -94,7 +94,6 @@ public class Tile implements MouseListener{
 				frontTile.setIcon(flag);
 				bombFlags++;
 				currentTile = "flag";
-		
 			}
 		}
 		

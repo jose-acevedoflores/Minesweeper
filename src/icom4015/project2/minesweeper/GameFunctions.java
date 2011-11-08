@@ -44,6 +44,8 @@ public class GameFunctions {
 		
 		int d=0;//This parameter is introduce because to represent the bomb location in a linear way.
 				//For example position 12 linearly corresponds to [1][3] and it's easier to work with. 
+		
+		//In this loop we create the labels that go under the tiles and we determine if the label should be a bomb.
 		for(int i = 0 ; i < 9 ; i++)
 		{
 			for(int j = 0; j < 9; j++)
@@ -63,6 +65,10 @@ public class GameFunctions {
 			}
 		}
 		
+		//In this loop we fill the labels near the bombs with numbers.
+		
+		
+		//Adding the tiles to the panels.
 		for(int i = 0; i < 9; i++)
 		{
 			for(int j = 0; j < 9; j++)
@@ -70,7 +76,6 @@ public class GameFunctions {
 				playPanelFront.add(frontTiles[i][j].getFrontTileLabel());
 				playPanelBelow.add(frontTiles[i][j].getUnderTileLabel());				
 			}
-		
 		}
 	}
 	
