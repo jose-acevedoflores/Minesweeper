@@ -14,8 +14,10 @@ import javax.swing.JLabel;
  */
 public class Tile implements MouseListener{
 	
-
-	private ImageIcon image;
+	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
+	private static ImageIcon questionMark = new ImageIcon("images/tile2.png");
+	private static ImageIcon normalTile = new ImageIcon("images/tile.png");
+	private String currentTile;
 	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;
 	
@@ -27,9 +29,9 @@ public class Tile implements MouseListener{
 	public Tile(LabelUnderTile t)
 	{
 		labelUnderTile = t;
-		image = new ImageIcon("images/tile.png");
-		frontTile = new JLabel(image);
+		frontTile = new JLabel(normalTile);
 		frontTile.addMouseListener(this);
+		currentTile= "normalTile";
 	}
 
 	/**
@@ -55,12 +57,31 @@ public class Tile implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		ImageIcon img;
 		if(arg0.getButton() == MouseEvent.BUTTON1)
-		{	img = (ImageIcon) this.getUnderTileLabel().getIcon();
-			frontTile.setIcon(img);
+		{
+			if(!currentTile.equals("flag"))
+			{
+				img = (ImageIcon) this.getUnderTileLabel().getIcon();
+				frontTile.setIcon(img);
+				currentTile = "under";
+			}
 		}
 		else if(arg0.getButton() == MouseEvent.BUTTON3)
-		{	img = new ImageIcon("images/tile3.png");
-			frontTile.setIcon(img);
+		{	
+			if(currentTile.equals("flag"))
+			{
+				frontTile.setIcon(questionMark);
+				currentTile = "question";
+			}
+			else if(currentTile.equals("question"))
+			{	
+				frontTile.setIcon(normalTile);
+				currentTile = "normalTile";
+			}
+			else if(currentTile.equals("normalTile"))
+			{
+				frontTile.setIcon(flag);
+				currentTile = "flag";
+			}
 		}
 		
 		
