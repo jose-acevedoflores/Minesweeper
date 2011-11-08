@@ -8,7 +8,7 @@ import javax.swing.border.BevelBorder;
 
 public class GameFunctions {
 	
-	private Tile[] frontTiles;
+	private Tile[][] frontTiles;
 	private MineGenerator mineGenerator;
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
@@ -22,7 +22,7 @@ public class GameFunctions {
 	public GameFunctions()
 	{
 		mineGenerator =  new MineGenerator();
-		frontTiles = new Tile[81];
+		frontTiles = new Tile[9][9];
 	
 		playPanelFront = new JPanel(new GridLayout(9,9));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -41,25 +41,35 @@ public class GameFunctions {
 		
 		int c=0;
 		LabelUnderTile labelUnderTile;
-		for(int i = 0 ; i < frontTiles.length ; i++)
+		
+		int d=0;
+		for(int i = 0 ; i < 9 ; i++)
 		{
-			if(mineGenerator.getBombLocations()[c] == i)
+			for(int j = 0; j < 9; j++)
 			{
-				 labelUnderTile = new LabelUnderTile(true);	
-				 c++;
-				 if(c==10)//Reset c so we don't get out of bounds.
-					 c=0;
+				if(mineGenerator.getBombLocations()[c] == d)
+				{
+					labelUnderTile = new LabelUnderTile(true);	
+					c++;
+					if(c==10)//Reset c so we don't get out of bounds.
+						c=0;
+				}
+				else
+					labelUnderTile = new LabelUnderTile(false);
+
+				d++;
+				frontTiles[i][j] = new Tile(labelUnderTile);
 			}
-			else
-				labelUnderTile = new LabelUnderTile(false);
-			
-			frontTiles[i] = new Tile(labelUnderTile);
 		}
 		
-		for(int a = 0; a < frontTiles.length; a++)
+		for(int i = 0; i < 9; i++)
 		{
-			playPanelFront.add(frontTiles[a].getFrontTileLabel());
-			playPanelBelow.add(frontTiles[a].getUnderTileLabel());
+			for(int j = 0; j < 9; j++)
+			{
+				playPanelFront.add(frontTiles[i][j].getFrontTileLabel());
+				playPanelBelow.add(frontTiles[i][j].getUnderTileLabel());				
+			}
+		
 		}
 	}
 	

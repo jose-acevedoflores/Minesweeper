@@ -17,10 +17,23 @@ public class MineGenerator {
 	public MineGenerator()
 	{
 		generator = new Random();
+		int nextBomb = 0;
 		
 		for(int i = 0; i < 10; i++)
 		{
-			bombLocations[i] = 1+generator.nextInt(80);
+			nextBomb =  generator.nextInt(81);
+			
+			for(int j=0; j < i; j++)
+			{
+				if(bombLocations[j] == nextBomb)
+				{
+					do{
+						nextBomb =  generator.nextInt(81);
+					}while(bombLocations[j] == nextBomb);
+				}
+			}
+			
+			bombLocations[i] = nextBomb;
 			//Check bug: if a random number repeats then we get less than ten bombs
 		}
 		
