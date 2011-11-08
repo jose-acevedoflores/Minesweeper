@@ -17,6 +17,7 @@ public class Tile implements MouseListener{
 	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
 	private static ImageIcon questionMark = new ImageIcon("images/tile2.png");
 	private static ImageIcon normalTile = new ImageIcon("images/tile.png");
+	private static int bombFlags;
 	private String currentTile;
 	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;
@@ -52,6 +53,14 @@ public class Tile implements MouseListener{
 		return frontTile;
 	}
 
+	/**
+	 * Gets the amount of flag labels on screen.
+	 * @return the amount of flag labels.
+	 */
+	public int getFlagsOnScreen()
+	{
+		return bombFlags;
+	}
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -72,6 +81,7 @@ public class Tile implements MouseListener{
 			if(currentTile.equals("flag"))
 			{
 				frontTile.setIcon(questionMark);
+				bombFlags--;
 				currentTile = "question";
 			}
 			else if(currentTile.equals("question"))
@@ -79,10 +89,12 @@ public class Tile implements MouseListener{
 				frontTile.setIcon(normalTile);
 				currentTile = "normalTile";
 			}
-			else if(currentTile.equals("normalTile"))
+			else if(currentTile.equals("normalTile") )
 			{
 				frontTile.setIcon(flag);
+				bombFlags++;
 				currentTile = "flag";
+		
 			}
 		}
 		
