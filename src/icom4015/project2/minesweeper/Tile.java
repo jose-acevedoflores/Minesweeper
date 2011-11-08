@@ -1,7 +1,6 @@
 package icom4015.project2.minesweeper;
 
 
-import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -54,8 +53,17 @@ public class Tile implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		ImageIcon img =(ImageIcon) this.getUnderTileLabel().getIcon();
-		frontTile.setIcon(img);
+		ImageIcon img;
+		if(arg0.getButton() == MouseEvent.BUTTON1)
+		{	img = (ImageIcon) this.getUnderTileLabel().getIcon();
+			frontTile.setIcon(img);
+		}
+		else if(arg0.getButton() == MouseEvent.BUTTON3)
+		{	img = new ImageIcon("images/tile3.png");
+			frontTile.setIcon(img);
+		}
+		
+		
 	}
 
 	@Override

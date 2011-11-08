@@ -42,7 +42,8 @@ public class GameFunctions {
 		int c=0;
 		LabelUnderTile labelUnderTile;
 		
-		int d=0;
+		int d=0;//This parameter is introduce because to represent the bomb location in a linear way.
+				//For example position 12 linearly corresponds to [1][3] and it's easier to work with. 
 		for(int i = 0 ; i < 9 ; i++)
 		{
 			for(int j = 0; j < 9; j++)
