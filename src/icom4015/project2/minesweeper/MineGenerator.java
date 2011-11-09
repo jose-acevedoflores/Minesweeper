@@ -27,17 +27,8 @@ public class MineGenerator {
 			{
 				if(bombLocations[j] == nextBomb)
 				{
-					boolean bombRepeated=true;
-					while(bombRepeated)
-					{
-						bombRepeated = false;
-						nextBomb = generator.nextInt(81);
-						for(int t = 0 ; t < i; t++)
-						{
-							if(nextBomb == bombLocations[t])
-							{	bombRepeated = true;	break;	}
-						}
-					}
+					nextBomb =  generator.nextInt(81);
+					j=0;
 				}
 			}
 			
