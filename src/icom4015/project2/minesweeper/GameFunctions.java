@@ -13,6 +13,7 @@ public class GameFunctions {
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
 	private int gameSize = 9;
+	protected static boolean lost=false;
 	
 	/**
 	 * Creates a game functions object that sets the playing area size (playPanel) and the 
@@ -249,7 +250,7 @@ public class GameFunctions {
 	 */
 	public JPanel getPlayPanel()
 	{
-		return playPanelFront;
+		return playPanelBelow;
 	}
 	
 }

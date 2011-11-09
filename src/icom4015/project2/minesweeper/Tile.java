@@ -22,7 +22,6 @@ public class Tile {
 	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;
 	
-	private static boolean lost = false;
 	
 	
 	/**
@@ -76,6 +75,11 @@ public class Tile {
 	}
 	
 	
+	/**
+	 * 
+	 * @author Jose L.
+	 *
+	 */
 	public class TileListener implements MouseListener{
 
 
@@ -85,7 +89,7 @@ public class Tile {
 			ImageIcon img;
 			if(arg0.getButton() == MouseEvent.BUTTON1)
 			{
-				if(!currentTile.equals("flag")&& !lost)
+				if(!currentTile.equals("flag")&& !GameFunctions.lost)
 				{
 					img = (ImageIcon) getUnderTileLabel().getIcon();
 					frontTile.setIcon(img);
@@ -93,7 +97,7 @@ public class Tile {
 					if(labelUnderTile.bombHere())
 					{
 						System.out.println("Boooom");
-						lost=true;
+						GameFunctions.lost=true;
 					}
 				}
 			}
@@ -101,18 +105,18 @@ public class Tile {
 			//Right click pressed
 			else if(arg0.getButton() == MouseEvent.BUTTON3)
 			{	
-				if(currentTile.equals("flag") && !lost)
+				if(currentTile.equals("flag") && !GameFunctions.lost)
 				{
 					frontTile.setIcon(questionMark);
 					bombFlags--;
 					currentTile = "question";
 				}
-				else if(currentTile.equals("question") && !lost)
+				else if(currentTile.equals("question") && !GameFunctions.lost)
 				{	
 					frontTile.setIcon(normalTile);
 					currentTile = "normalTile";
 				}
-				else if(currentTile.equals("normalTile") && !lost)
+				else if(currentTile.equals("normalTile") && !GameFunctions.lost)
 				{
 					frontTile.setIcon(flag);
 					bombFlags++;
@@ -136,7 +140,7 @@ public class Tile {
 		@Override
 		public void mouseReleased(MouseEvent arg0) 
 		{
-			if(!lost)
+			if(!GameFunctions.lost)
 				System.out.println("Scary face is on");
 		}
 	}
