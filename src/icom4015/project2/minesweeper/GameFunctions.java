@@ -133,6 +133,105 @@ public class GameFunctions {
 
 		}
 		
+		
+		//This loop sets the number label of the top row
+		for(int j=1 ; j < gameSize-1 ; j++)
+		{
+			int bombsNear=0;
+			if(!frontTiles[0][j].checkBomb())
+			{
+				for(int a = 0; a < 2 ; a++)
+				{
+					for(int b = j-1 ; b < j+2 ; b++)
+					{
+						if(frontTiles[a][b].checkBomb())
+						{
+							bombsNear++;
+						}
+					}
+				}
+				frontTiles[0][j].setUnderTileNumber(bombsNear);
+			}//end if
+
+		}
+		
+
+		//This loop sets the number label of the bottom row
+		for(int j=1 ; j < gameSize-1 ; j++)
+		{
+			int bombsNear=0;
+			if(!frontTiles[gameSize-1][j].checkBomb())
+			{
+				for(int a = gameSize-1; a > gameSize-3 ; a--)
+				{
+					for(int b = j-1 ; b < j+2 ; b++)
+					{
+						if(frontTiles[a][b].checkBomb())
+						{
+							bombsNear++;
+						}
+					}
+				}
+				frontTiles[gameSize-1][j].setUnderTileNumber(bombsNear);
+			}//end if
+
+		}
+		
+		
+		//This block sets the number label on the top-left corner
+		if(!frontTiles[0][0].checkBomb())
+		{
+			int bombsNear=0;
+			if(frontTiles[0][1].checkBomb())
+				bombsNear++;
+			if(frontTiles[1][0].checkBomb())
+				bombsNear++;
+			if(frontTiles[1][1].checkBomb())
+				bombsNear++;
+			frontTiles[0][0].setUnderTileNumber(bombsNear);
+		}
+		
+		//This block sets the number label on the top-right corner
+		if(!frontTiles[0][gameSize-1].checkBomb())
+		{
+			int bombsNear=0;
+			if(frontTiles[0][gameSize-2].checkBomb())
+				bombsNear++;
+			if(frontTiles[1][gameSize-1].checkBomb())
+				bombsNear++;
+			if(frontTiles[1][gameSize-2].checkBomb())
+				bombsNear++;
+			frontTiles[0][gameSize-1].setUnderTileNumber(bombsNear);
+		}
+		
+		//This block sets the number label on the bottom-left corner
+		if(!frontTiles[gameSize-1][0].checkBomb())
+		{
+			int bombsNear=0;
+			if(frontTiles[gameSize-2][0].checkBomb())
+				bombsNear++;
+			if(frontTiles[gameSize-1][1].checkBomb())
+				bombsNear++;
+			if(frontTiles[gameSize-2][1].checkBomb())
+				bombsNear++;
+			frontTiles[gameSize-1][0].setUnderTileNumber(bombsNear);
+		}
+		
+		//This block sets the number label on the bottom-right corner
+		if(!frontTiles[gameSize-1][gameSize-1].checkBomb())
+		{
+			int bombsNear=0;
+			if(frontTiles[gameSize-1][gameSize-2].checkBomb())
+				bombsNear++;
+			if(frontTiles[gameSize-2][gameSize-1].checkBomb())
+				bombsNear++;
+			if(frontTiles[gameSize-2][gameSize-2].checkBomb())
+				bombsNear++;
+			frontTiles[gameSize-1][gameSize-1].setUnderTileNumber(bombsNear);
+		}
+		
+		
+		
 		//Adding the tiles to the panels.
 		for(int i = 0; i < gameSize; i++)
 		{
