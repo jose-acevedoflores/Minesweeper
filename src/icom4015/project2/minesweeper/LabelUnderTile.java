@@ -29,7 +29,7 @@ public class LabelUnderTile {
 		}
 		else
 		{
-			image = new ImageIcon("images/amir2.JPG");
+			//image = new ImageIcon("images/amir2.JPG");
 		}
 		
 		numberHere=0;

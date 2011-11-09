@@ -6,20 +6,14 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-/**
- * Class designed to create the frame and present it to the user
- * @author 
- *
- */
-public class Minesweeper {
 
-	/**
-	 * Main method
-	 * @param args not used
-	 */
-	public static void main(String[] args) {
+public class UnderLabelFrame {
+
+	public UnderLabelFrame(JPanel panel)
+	{
 		JFrame frame = new JFrame("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/mine-logo.png");
 		JPanel timerAndBombPanel = new JPanel();
@@ -48,20 +42,13 @@ public class Minesweeper {
 		//Adding empty space between the two components
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
-		//Set the game
-		GameFunctions gameFunctions = new GameFunctions();
-		gameFunctions.setGameReady();
 
 		//Adding the playing area.
-		all.add(gameFunctions.getPlayPanel());
-		
-		UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
+		all.add(panel);
 		
 		frame.add(all);
 		frame.setIconImage(icon.getImage());
 		frame.setResizable(false);
 		frame.setVisible(true);
-		
 	}
-
 }

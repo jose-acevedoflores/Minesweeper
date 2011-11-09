@@ -1,8 +1,10 @@
 package icom4015.project2.minesweeper;
 
 
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -12,7 +14,7 @@ import javax.swing.JLabel;
  * @author 
  *
  */
-public class Tile {
+public class Tile extends Observable{
 	
 	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
 	private static ImageIcon questionMark = new ImageIcon("images/Question_mark.png");
@@ -21,7 +23,6 @@ public class Tile {
 	private String currentTile;
 	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;
-	
 	
 	
 	/**
@@ -64,11 +65,18 @@ public class Tile {
 		return bombFlags;
 	}
 	
+	/**
+	 * Checks if there is a bomb under this tile.
+	 * @return true if there is a bomb, false otherwise.
+	 */
 	public boolean checkBomb()
 	{
 		return labelUnderTile.bombHere();
 	}
-	
+	/**
+	 * Sets the number under this tile.
+	 * @param n the number under this tile.
+	 */
 	public void setUnderTileNumber(int n)
 	{
 		labelUnderTile.setNumber(n);
@@ -91,14 +99,36 @@ public class Tile {
 			{
 				if(!currentTile.equals("flag")&& !GameFunctions.lost)
 				{
-					img = (ImageIcon) getUnderTileLabel().getIcon();
-					frontTile.setIcon(img);
+					try{
+						if(labelUnderTile.getNumberHere() == 0)
+						{
+							for(int i = 0 ;  i < 1; i++)
+							{
+								System.out.println("a");
+							}
+						}
+					}
+					catch(NullPointerException w){
+						System.out.println("OOps");	
+					}
+					
+					if(labelUnderTile.getLabel().getIcon() != null)
+					{
+						img = (ImageIcon) getUnderTileLabel().getIcon();
+						frontTile.setIcon(img);
+					}
+					else
+					{
+						ImageIcon t = new ImageIcon("images/amir2.JPG");
+						frontTile.setIcon(t);
+					}
 					currentTile = "under";
 					if(labelUnderTile.bombHere())
 					{
 						System.out.println("Boooom");
 						GameFunctions.lost=true;
 					}
+					
 				}
 			}
 
@@ -143,5 +173,7 @@ public class Tile {
 			if(!GameFunctions.lost)
 				System.out.println("Scary face is on");
 		}
+
+		
 	}
 }

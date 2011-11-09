@@ -250,7 +250,17 @@ public class GameFunctions {
 	 */
 	public JPanel getPlayPanel()
 	{
+		return playPanelFront;
+	}
+	
+	/**
+	 * Gets the panel under the playing panel, where the bombs and number labels are found.
+	 * @return
+	 */
+	public JPanel getUnderPanel()
+	{
 		return playPanelBelow;
 	}
+	
 	
 }
