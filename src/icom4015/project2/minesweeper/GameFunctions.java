@@ -238,7 +238,7 @@ public class GameFunctions {
 			frontTiles[gameSize-1][gameSize-1].setUnderTileNumber(bombsNear);
 		}
 		
-		this.setEmptyStreak();
+		GameFunctions.setEmptyStreak();
 		
 		//Adding the tiles to the panels.
 		for(int i = 0; i < gameSize; i++)
@@ -274,7 +274,6 @@ public class GameFunctions {
 	 */
 	public static void revealEmptyStreak(int row , int column)
 	{
-		setEmptyStreak();
 		setStreak(row+1,column+1);
 	}
 	
@@ -295,7 +294,6 @@ public class GameFunctions {
 				{
 					streak[i][j] = true;
 					num[i-1][j-1][0] = d;
-					System.out.println(num[i-1][j-1][0]);
 				}
 				d++;
 			}
