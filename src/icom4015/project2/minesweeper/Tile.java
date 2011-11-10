@@ -23,19 +23,23 @@ public class Tile extends Observable{
 	private String currentTile;
 	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;
+	private int row;
+	private int column;
 	
 	
 	/**
 	 * Creates the panel that contains the front tile and the corresponding label below it.
 	 * It also adds the mouseListeners 
 	 */
-	public Tile(LabelUnderTile t)
+	public Tile(LabelUnderTile t, int row, int column)
 	{
 		labelUnderTile = t;
 		frontTile = new JLabel(normalTile);
 		MouseListener m = new TileListener();
 		frontTile.addMouseListener(m);
 		currentTile = "normalTile";
+		this.row = row;
+		this.column = column;
 	}
 
 	/**
@@ -128,7 +132,7 @@ public class Tile extends Observable{
 					}
 					if(labelUnderTile.getNumberHere() == 0)
 					{
-						GameFunctions.revealEmptyStreak();
+						GameFunctions.revealEmptyStreak(row,column);
 					}
 					currentTile = "under";
 					if(labelUnderTile.bombHere())

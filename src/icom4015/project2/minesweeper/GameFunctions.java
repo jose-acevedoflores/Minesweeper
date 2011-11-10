@@ -68,7 +68,7 @@ public class GameFunctions {
 					labelUnderTile = new LabelUnderTile(false);
 
 				d++;
-				frontTiles[i][j] = new Tile(labelUnderTile);
+				frontTiles[i][j] = new Tile(labelUnderTile, i, j);
 			}
 		}
 		
@@ -270,25 +270,17 @@ public class GameFunctions {
 	/**
 	 * Reveals the empty streaks associated with the tile pressed. 
 	 */
-	public static void revealEmptyStreak()
+	public static void revealEmptyStreak(int row , int column)
 	{
-		for(int i = 0 ; i < gameSize ; i++)
-		{
-			for(int j = 0 ; j < gameSize ; j++)
-			{
-				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
-				{
-					frontTiles[i][j].setFrontTileLabel();
-				}
-			}
-		}
+		setEmptyStreak();
+		setStreak(row+1,column+1);
 	}
 	
 	/**
 	 * Sets the empty streaks for a game. By empty streak I mean when a tile that has a zero under it is clicked all the tiles that also contain 
 	 * zero are freed up until the ones that have a number.
 	 */
-	private void setEmptyStreak()
+	private static void setEmptyStreak()
 	{
 		
 		int streakSize = gameSize+1;
@@ -307,24 +299,6 @@ public class GameFunctions {
 			}
 		}
 		
-		this.setStreakNum(1, 1, streakSize, 0);
-		
-		
-		//Sort the bomb positions in ascending order.
-		for(int i = 0 ; i < streakNum.size() - 1; i++)
-		{
-			for (int c = 0; c < streakNum.size()  - 1 - i; c++)
-			{
-				if(streakNum.get(c) > streakNum.get(c+1) )
-				{
-					 int temp = streakNum.get(c+1) ;
-					 streakNum.set(c+1,streakNum.get(c)) ;
-					 streakNum.set(c,temp);
-				}
-			}
-		}
-		System.out.println(streakNum);
-		
 	}
 	
 	/**
@@ -332,14 +306,14 @@ public class GameFunctions {
 	 * @param n
 	 * @return
 	 */
-	public boolean isNumberInArrayList(int n)
+	public static boolean isNumberInArrayList(int n)
 	{
-		for(int i = 0 ; i < streakNum.size(); i++)
+		for(int i = 0 ; i < numsUncovered.size(); i++)
 		{
-			if(n == streakNum.get(i))
+			if(n == numsUncovered.get(i))
 				return true;
 		}
-		
+
 		return false;
 	}
 	
@@ -350,66 +324,30 @@ public class GameFunctions {
 	 * @param streakSize
 	 * @param currentBlock
 	 */
-	public void setStreakNum(int iPrime, int jPrime, int streakSize, int currentBlock)
+	public static void setStreak(int iPrime, int jPrime)
 	{
-		if(iPrime == streakSize)
-			return;
 		
-		int firstBlock=currentBlock;
-		for(int i = iPrime ; i < streakSize; i++)
+		for(int i = iPrime-1; i < iPrime+2; i++)
 		{
-			for(int j = jPrime ; j < streakSize ; j++)
+			for(int j = jPrime-1 ; j < jPrime+2; j++)
 			{
 				
-				if(streak[i][j])
+			
+				if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i-1][j-1][0]))
 				{
-					if(firstBlock==currentBlock)
-					{
-						streakNum.add(num[i-1][j-1][0]);
-						firstBlock++;
-					
-						for(int a = i-1; a < i+2 ; a++)
-						{
-							for(int b = j-1 ; b < j+2 ; b++)
-							{
-								if(streak[a][b])
-								{
 
-									if(!this.isNumberInArrayList(num[a-1][b-1][0]))
-									{
-										streakNum.add(num[a-1][b-1][0]);
-									}
-								}
-							}
-						}
-					}
-					else
-					{
-						if(this.isNumberInArrayList(num[i-1][j-1][0]))
-						{
-							for(int a = i-1; a < i+2 ; a++)
-							{
-								for(int b = j-1 ; b < j+2 ; b++)
-								{
-									if(streak[a][b])
-									{
+					frontTiles[i-1][j-1].setFrontTileLabel();
+					numsUncovered.add(num[i-1][j-1][0]);
+					setStreak(i,j);
+				}
 
-										if(!this.isNumberInArrayList(num[a-1][b-1][0]))
-										{
-											streakNum.add(num[a-1][b-1][0]);
-										}
-									}
-								}
-							}
-						}
-					}
-				}//end if
 			}
 		}
-		streakNum.add(-2);
+		return;
 	}
 	
-	private int[][][] num;
-	private ArrayList<Integer> streakNum = new ArrayList<Integer>();
-	private ArrayList<Integer> streakRejected = new ArrayList<Integer>();
+	private static int[][][] num;
+	private static ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
+	
+	
 }
