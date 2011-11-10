@@ -14,6 +14,7 @@ public class GameFunctions {
 	private JPanel playPanelBelow;
 	private static int gameSize = 9;
 	protected static boolean lost=false;
+	private static boolean[][] streak;
 	
 	/**
 	 * Creates a game functions object that sets the playing area size (playPanel) and the 
@@ -25,6 +26,7 @@ public class GameFunctions {
 	{
 		mineGenerator =  new MineGenerator();
 		frontTiles = new Tile[gameSize][gameSize];
+		streak =  new boolean[gameSize][gameSize];
 	
 		playPanelFront = new JPanel(new GridLayout(gameSize,gameSize));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -285,6 +287,45 @@ public class GameFunctions {
 	 */
 	private void setEmptyStreak()
 	{
+	
+		for(int i = 0 ; i < gameSize ; i++)
+		{
+			for(int j = 0 ; j < gameSize ; j++)
+			{
+				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
+				{
+					streak[i][j] = true;
+				}
+			
+			}
+		}
+		
+		
+		//In this loop we fill the labels near the bombs with numbers.
+		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
+		for(int i = 1 ; i < gameSize-1; i++)
+		{
+			for(int j = 1 ; j < gameSize-1 ; j++)
+			{
+				
+				if(streak[i][j])
+				{
+					for(int a = i-1; a < i+2 ; a++)
+					{
+						for(int b = j-1 ; b < j+2 ; b++)
+						{
+							if(true)
+							{
+								System.out.println("h");
+							}
+						}
+					}
+					
+				}//end if
+			}
+		}
+		
+		
 		
 	}
 	
