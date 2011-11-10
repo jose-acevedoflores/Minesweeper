@@ -311,9 +311,9 @@ public class GameFunctions {
 		//In this loop we fill the labels near the bombs with numbers.
 		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
 		int firstBlock=0;
-		for(int i = 1 ; i < gameSize; i++)
+		for(int i = 1 ; i < streakSize; i++)
 		{
-			for(int j = 1 ; j < gameSize ; j++)
+			for(int j = 1 ; j < streakSize ; j++)
 			{
 				
 				if(streak[i][j])
