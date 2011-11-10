@@ -75,7 +75,11 @@ public class GameFunctions {
 		}
 		
 		/*-----------------------------------------------------------------*/
-		
+		/* In this code segment we introduce an integer array that controls the loop that sets the number of bombs near a given tile.
+		   It's bigger by one column at the right and one at the left and one row on the top and one row on the bottom.
+		   This extra rows are filled with -2. This represents an illegal position because the index
+		 	for the frontTiles array would be out of bounds and there is no tile at that position.
+		 */
 		int[][] biggerGrid = new int[gameSize+2][gameSize+2];
 		
 			for(int j =0; j < gameSize+2; j++)
@@ -100,23 +104,24 @@ public class GameFunctions {
 		/*--------------------------------------------------------------------*/
 		
 		//In this loop we fill the labels near the bombs with numbers.
-		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
 		for(int i = 0 ; i < gameSize + 1; i++)
 		{
 			for(int j = 0 ; j < gameSize + 1  ; j++)
 			{
 				int bombsNear=0;
 				
-				if(biggerGrid[i][j]!=-2)
+				if(biggerGrid[i][j]!=-2) // If the tile we are checking is not an empty tile then-> 
 				{
 					
-					if(!frontTiles[i-1][j-1].checkBomb())
-					{
-						for(int a = i-1; a < i+2 ; a++)
+					if(!frontTiles[i-1][j-1].checkBomb()) // -> Check if this tile doesn't contain a bomb.
+					{										
+						//The -1 in the index is to get the equivalent position for the fronTiles array  given the indexes of the biggerGrid array.
+						
+						for(int a = i-1; a < i+2 ; a++) // In here we go from one row before up to one row below the tile we are at. 
 						{
 							for(int b = j-1 ; b < j+2 ; b++)
 							{
-								if(biggerGrid[a][b]!=-2)
+								if(biggerGrid[a][b]!=-2) // If that tile is not on an illegal zone then we can check if there is a bomb there
 								{
 									if(frontTiles[a-1][b-1].checkBomb())
 									{
@@ -131,8 +136,7 @@ public class GameFunctions {
 			}
 		}
 		
-		
-		
+
 		GameFunctions.setEmptyStreak();
 		
 		//Adding the tiles to the panels.
