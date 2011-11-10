@@ -97,8 +97,18 @@ public class Tile {
 	
 	public void setFrontTileLabel()
 	{
-		frontTile.setIcon(null);
-		currentTile = "under";
+		
+		if(labelUnderTile.getNumberHere() == 0)
+		{	frontTile.setIcon(null);
+			currentTile = "under";
+		}
+		else
+		{
+			ImageIcon t = new ImageIcon("images/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
+			frontTile.setIcon(t);
+			currentTile = "under";
+
+		}
 	}
 	
 	

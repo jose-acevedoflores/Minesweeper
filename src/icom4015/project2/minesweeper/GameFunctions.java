@@ -3,6 +3,8 @@ package icom4015.project2.minesweeper;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
@@ -192,8 +194,9 @@ public class GameFunctions {
 				if(frontTiles[i-1][j-1].getUnderTileLabelNumber() == 0)
 				{
 					streak[i][j] = true;
-					num[i-1][j-1][0] = d;
+					
 				}
+				num[i-1][j-1][0] = d;
 				d++;
 			}
 		}
@@ -205,11 +208,11 @@ public class GameFunctions {
 	 * @param n
 	 * @return
 	 */
-	public static boolean isNumberInArrayList(int n)
+	public static boolean isNumberInArrayList(int n , ArrayList<Integer> uncovered)
 	{
-		for(int i = 0 ; i < numsUncovered.size(); i++)
+		for(int i = 0 ; i < uncovered.size(); i++)
 		{
-			if(n == numsUncovered.get(i))
+			if(n == uncovered.get(i))
 				return true;
 		}
 
@@ -231,12 +234,28 @@ public class GameFunctions {
 			for(int j = jPrime-1 ; j < jPrime+2; j++)
 			{
 				
-			
-				if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i-1][j-1][0]))
+				if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i-1][j-1][0], zeroesUncovered))
 				{
-
 					frontTiles[i-1][j-1].setFrontTileLabel();
-					numsUncovered.add(num[i-1][j-1][0]);
+					zeroesUncovered.add(num[i-1][j-1][0]);
+					
+					for(int a = i-2; a < i+1; a++)
+					{	
+						for(int b = j-2; b < j+1; b++)
+						{
+							if(a>=0 && a < gameSize && b>=0 && b < gameSize)
+							{
+								if(frontTiles[a][b].getUnderTileLabelNumber() != 0 
+										&&frontTiles[a][b].getUnderTileLabelNumber() != -1 
+										&& !GameFunctions.isNumberInArrayList(num[a][b][0], numsUncovered))
+								{
+									frontTiles[a][b].setFrontTileLabel();
+									numsUncovered.add(num[a][b][0]);
+								}
+							}
+						}
+					}
+					
 					setStreak(i,j);
 				}
 
@@ -246,6 +265,7 @@ public class GameFunctions {
 	}
 	
 	private static int[][][] num;
+	private static ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
 	private static ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
 	
 	
