@@ -307,18 +307,63 @@ public class GameFunctions {
 			}
 		}
 		
+		this.setStreakNum(1, 1, streakSize, 0);
 		
-		//In this loop we fill the labels near the bombs with numbers.
-		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
-		int firstBlock=0;
-		for(int i = 1 ; i < streakSize; i++)
+		
+		//Sort the bomb positions in ascending order.
+		for(int i = 0 ; i < streakNum.size() - 1; i++)
 		{
-			for(int j = 1 ; j < streakSize ; j++)
+			for (int c = 0; c < streakNum.size()  - 1 - i; c++)
+			{
+				if(streakNum.get(c) > streakNum.get(c+1) )
+				{
+					 int temp = streakNum.get(c+1) ;
+					 streakNum.set(c+1,streakNum.get(c)) ;
+					 streakNum.set(c,temp);
+				}
+			}
+		}
+		System.out.println(streakNum);
+		
+	}
+	
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public boolean isNumberInArrayList(int n)
+	{
+		for(int i = 0 ; i < streakNum.size(); i++)
+		{
+			if(n == streakNum.get(i))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param iPrime
+	 * @param jPrime
+	 * @param streakSize
+	 * @param currentBlock
+	 */
+	public void setStreakNum(int iPrime, int jPrime, int streakSize, int currentBlock)
+	{
+		if(iPrime == streakSize)
+			return;
+		
+		int firstBlock=currentBlock;
+		for(int i = iPrime ; i < streakSize; i++)
+		{
+			for(int j = jPrime ; j < streakSize ; j++)
 			{
 				
 				if(streak[i][j])
 				{
-					if(firstBlock==0)
+					if(firstBlock==currentBlock)
 					{
 						streakNum.add(num[i-1][j-1][0]);
 						firstBlock++;
@@ -361,40 +406,10 @@ public class GameFunctions {
 				}//end if
 			}
 		}
-		
-		//Sort the bomb positions in ascending order.
-		for(int i = 0 ; i < streakNum.size() - 1; i++)
-		{
-			for (int c = 0; c < streakNum.size()  - 1 - i; c++)
-			{
-				if(streakNum.get(c) > streakNum.get(c+1) )
-				{
-					 int temp = streakNum.get(c+1) ;
-					 streakNum.set(c+1,streakNum.get(c)) ;
-					 streakNum.set(c,temp);
-				}
-			}
-		}
-		System.out.println(streakNum);
-		
-	}
-	
-	/**
-	 * 
-	 * @param n
-	 * @return
-	 */
-	public boolean isNumberInArrayList(int n)
-	{
-		for(int i = 0 ; i < streakNum.size(); i++)
-		{
-			if(n == streakNum.get(i))
-				return true;
-		}
-		
-		return false;
+		streakNum.add(-2);
 	}
 	
 	private int[][][] num;
 	private ArrayList<Integer> streakNum = new ArrayList<Integer>();
+	private ArrayList<Integer> streakRejected = new ArrayList<Integer>();
 }
