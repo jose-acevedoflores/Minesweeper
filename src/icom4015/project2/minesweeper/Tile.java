@@ -52,7 +52,7 @@ public class Tile {
 	}
 	
 	/**
-	 * Gets the number associated with the tile under this fron tile.
+	 * Gets the number associated with the tile under this front tile.
 	 * @return the number in this tile.
 	 */
 	public int getUnderTileLabelNumber()

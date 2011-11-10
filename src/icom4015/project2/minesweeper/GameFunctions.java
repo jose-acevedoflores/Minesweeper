@@ -48,10 +48,10 @@ public class GameFunctions {
 	public void setGameReady()
 	{
 		
-		int c=0;
+	
 		LabelUnderTile labelUnderTile;
-		
-		int d=0;//This parameter is introduce because to represent the bomb location in a linear way.
+		int c=0;
+		int d=0;//This parameter (d) is introduce because to represent the bomb location in a linear way.
 				//For example position 12 linearly corresponds to [1][3] and it's easier to work with. 
 		
 		//In this loop we create the labels that go under the tiles and we determine if the label should be a bomb.
@@ -74,169 +74,64 @@ public class GameFunctions {
 			}
 		}
 		
+		/*-----------------------------------------------------------------*/
+		
+		int[][] biggerGrid = new int[gameSize+2][gameSize+2];
+		
+			for(int j =0; j < gameSize+2; j++)
+			{
+				biggerGrid[0][j]=-2;
+			}
+			for(int j =0; j < gameSize+2; j++)
+			{
+				biggerGrid[gameSize+1][j]=-2;
+			}
+		
+			for(int i =0; i < gameSize+2; i++)
+			{
+				biggerGrid[i][0]=-2;
+			}
+			for(int i =0; i < gameSize+2; i++)
+			{
+				biggerGrid[i][gameSize+1]=-2;
+			}
+	
+		
+		/*--------------------------------------------------------------------*/
+		
 		//In this loop we fill the labels near the bombs with numbers.
 		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
-		for(int i = 1 ; i < gameSize-1; i++)
+		for(int i = 0 ; i < gameSize + 1; i++)
 		{
-			for(int j = 1 ; j < gameSize-1 ; j++)
+			for(int j = 0 ; j < gameSize + 1  ; j++)
 			{
 				int bombsNear=0;
-				if(!frontTiles[i][j].checkBomb())
+				
+				if(biggerGrid[i][j]!=-2)
 				{
-					for(int a = i-1; a < i+2 ; a++)
+					
+					if(!frontTiles[i-1][j-1].checkBomb())
 					{
-						for(int b = j-1 ; b < j+2 ; b++)
+						for(int a = i-1; a < i+2 ; a++)
 						{
-							if(frontTiles[a][b].checkBomb())
+							for(int b = j-1 ; b < j+2 ; b++)
 							{
-								bombsNear++;
+								if(biggerGrid[a][b]!=-2)
+								{
+									if(frontTiles[a-1][b-1].checkBomb())
+									{
+										bombsNear++;
+									}
+								}
 							}
 						}
-					}
-					frontTiles[i][j].setUnderTileNumber(bombsNear);
-				}//end if
+						frontTiles[i-1][j-1].setUnderTileNumber(bombsNear);
+					}//end if
+				}
 			}
 		}
 		
-		//This loop sets the number label of the leftmost column
-		for(int i=1 ; i < gameSize-1 ; i++)
-		{
-			
-			int bombsNear=0;
-			if(!frontTiles[i][0].checkBomb())
-			{
-				for(int a = i-1; a < i+2 ; a++)
-				{
-					for(int b = 0 ; b < 2 ; b++)
-					{
-						if(frontTiles[a][b].checkBomb())
-						{
-							bombsNear++;
-						}
-					}
-				}
-				frontTiles[i][0].setUnderTileNumber(bombsNear);
-			}//end if
-
-		}
 		
-		//This loop sets the number label of the rightmost column
-		for(int i=1 ; i < gameSize-1 ; i++)
-		{
-			int bombsNear=0;
-			if(!frontTiles[i][ gameSize-1].checkBomb())
-			{
-				for(int a = i-1; a < i+2 ; a++)
-				{
-					for(int b = gameSize-1 ; b > gameSize-3 ; b--)
-					{
-						if(frontTiles[a][b].checkBomb())
-						{
-							bombsNear++;
-						}
-					}
-				}
-				frontTiles[i][ gameSize-1].setUnderTileNumber(bombsNear);
-			}//end if
-
-		}
-		
-		
-		//This loop sets the number label of the top row
-		for(int j=1 ; j < gameSize-1 ; j++)
-		{
-			int bombsNear=0;
-			if(!frontTiles[0][j].checkBomb())
-			{
-				for(int a = 0; a < 2 ; a++)
-				{
-					for(int b = j-1 ; b < j+2 ; b++)
-					{
-						if(frontTiles[a][b].checkBomb())
-						{
-							bombsNear++;
-						}
-					}
-				}
-				frontTiles[0][j].setUnderTileNumber(bombsNear);
-			}//end if
-
-		}
-		
-
-		//This loop sets the number label of the bottom row
-		for(int j=1 ; j < gameSize-1 ; j++)
-		{
-			int bombsNear=0;
-			if(!frontTiles[gameSize-1][j].checkBomb())
-			{
-				for(int a = gameSize-1; a > gameSize-3 ; a--)
-				{
-					for(int b = j-1 ; b < j+2 ; b++)
-					{
-						if(frontTiles[a][b].checkBomb())
-						{
-							bombsNear++;
-						}
-					}
-				}
-				frontTiles[gameSize-1][j].setUnderTileNumber(bombsNear);
-			}//end if
-
-		}
-		
-		
-		//This block sets the number label on the top-left corner
-		if(!frontTiles[0][0].checkBomb())
-		{
-			int bombsNear=0;
-			if(frontTiles[0][1].checkBomb())
-				bombsNear++;
-			if(frontTiles[1][0].checkBomb())
-				bombsNear++;
-			if(frontTiles[1][1].checkBomb())
-				bombsNear++;
-			frontTiles[0][0].setUnderTileNumber(bombsNear);
-		}
-		
-		//This block sets the number label on the top-right corner
-		if(!frontTiles[0][gameSize-1].checkBomb())
-		{
-			int bombsNear=0;
-			if(frontTiles[0][gameSize-2].checkBomb())
-				bombsNear++;
-			if(frontTiles[1][gameSize-1].checkBomb())
-				bombsNear++;
-			if(frontTiles[1][gameSize-2].checkBomb())
-				bombsNear++;
-			frontTiles[0][gameSize-1].setUnderTileNumber(bombsNear);
-		}
-		
-		//This block sets the number label on the bottom-left corner
-		if(!frontTiles[gameSize-1][0].checkBomb())
-		{
-			int bombsNear=0;
-			if(frontTiles[gameSize-2][0].checkBomb())
-				bombsNear++;
-			if(frontTiles[gameSize-1][1].checkBomb())
-				bombsNear++;
-			if(frontTiles[gameSize-2][1].checkBomb())
-				bombsNear++;
-			frontTiles[gameSize-1][0].setUnderTileNumber(bombsNear);
-		}
-		
-		//This block sets the number label on the bottom-right corner
-		if(!frontTiles[gameSize-1][gameSize-1].checkBomb())
-		{
-			int bombsNear=0;
-			if(frontTiles[gameSize-1][gameSize-2].checkBomb())
-				bombsNear++;
-			if(frontTiles[gameSize-2][gameSize-1].checkBomb())
-				bombsNear++;
-			if(frontTiles[gameSize-2][gameSize-2].checkBomb())
-				bombsNear++;
-			frontTiles[gameSize-1][gameSize-1].setUnderTileNumber(bombsNear);
-		}
 		
 		GameFunctions.setEmptyStreak();
 		
