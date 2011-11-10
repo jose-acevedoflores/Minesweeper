@@ -2,7 +2,7 @@ package icom4015.project2.minesweeper;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
@@ -15,6 +15,7 @@ public class GameFunctions {
 	private static int gameSize = 9;
 	protected static boolean lost=false;
 	private static boolean[][] streak;
+
 	
 	/**
 	 * Creates a game functions object that sets the playing area size (playPanel) and the 
@@ -24,9 +25,11 @@ public class GameFunctions {
 	 */
 	public GameFunctions()
 	{
+		
 		mineGenerator =  new MineGenerator();
 		frontTiles = new Tile[gameSize][gameSize];
-		streak =  new boolean[gameSize][gameSize];
+		streak =  new boolean[gameSize+2][gameSize+2];
+		num = new int[gameSize][gameSize][1];
 	
 		playPanelFront = new JPanel(new GridLayout(gameSize,gameSize));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -287,46 +290,111 @@ public class GameFunctions {
 	 */
 	private void setEmptyStreak()
 	{
-	
-		for(int i = 0 ; i < gameSize ; i++)
+		
+		int streakSize = gameSize+1;
+		int d = 0 ; 
+		for(int i = 1 ; i < streakSize ; i++)
 		{
-			for(int j = 0 ; j < gameSize ; j++)
+			for(int j = 1 ; j < streakSize ; j++)
 			{
-				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
+				if(frontTiles[i-1][j-1].getUnderTileLabelNumber() == 0)
 				{
 					streak[i][j] = true;
+					num[i-1][j-1][0] = d;
+					System.out.println(num[i-1][j-1][0]);
 				}
-			
+				d++;
 			}
 		}
 		
 		
 		//In this loop we fill the labels near the bombs with numbers.
 		//i and j start at 1 and finish at 7 so we take the inner block (so the index -1 doesn't go out of bounds)
-		for(int i = 1 ; i < gameSize-1; i++)
+		int firstBlock=0;
+		for(int i = 1 ; i < gameSize; i++)
 		{
-			for(int j = 1 ; j < gameSize-1 ; j++)
+			for(int j = 1 ; j < gameSize ; j++)
 			{
 				
 				if(streak[i][j])
 				{
-					for(int a = i-1; a < i+2 ; a++)
+					if(firstBlock==0)
 					{
-						for(int b = j-1 ; b < j+2 ; b++)
+						streakNum.add(num[i-1][j-1][0]);
+						firstBlock++;
+					
+						for(int a = i-1; a < i+2 ; a++)
 						{
-							if(true)
+							for(int b = j-1 ; b < j+2 ; b++)
 							{
-								System.out.println("h");
+								if(streak[a][b])
+								{
+
+									if(!this.isNumberInArrayList(num[a-1][b-1][0]))
+									{
+										streakNum.add(num[a-1][b-1][0]);
+									}
+								}
 							}
 						}
 					}
-					
+					else
+					{
+						if(this.isNumberInArrayList(num[i-1][j-1][0]))
+						{
+							for(int a = i-1; a < i+2 ; a++)
+							{
+								for(int b = j-1 ; b < j+2 ; b++)
+								{
+									if(streak[a][b])
+									{
+
+										if(!this.isNumberInArrayList(num[a-1][b-1][0]))
+										{
+											streakNum.add(num[a-1][b-1][0]);
+										}
+									}
+								}
+							}
+						}
+					}
 				}//end if
 			}
 		}
 		
-		
+		//Sort the bomb positions in ascending order.
+		for(int i = 0 ; i < streakNum.size() - 1; i++)
+		{
+			for (int c = 0; c < streakNum.size()  - 1 - i; c++)
+			{
+				if(streakNum.get(c) > streakNum.get(c+1) )
+				{
+					 int temp = streakNum.get(c+1) ;
+					 streakNum.set(c+1,streakNum.get(c)) ;
+					 streakNum.set(c,temp);
+				}
+			}
+		}
+		System.out.println(streakNum);
 		
 	}
 	
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public boolean isNumberInArrayList(int n)
+	{
+		for(int i = 0 ; i < streakNum.size(); i++)
+		{
+			if(n == streakNum.get(i))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	private int[][][] num;
+	private ArrayList<Integer> streakNum = new ArrayList<Integer>();
 }
