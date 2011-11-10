@@ -4,7 +4,6 @@ package icom4015.project2.minesweeper;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Observable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,12 +13,13 @@ import javax.swing.JLabel;
  * @author 
  *
  */
-public class Tile extends Observable{
+public class Tile {
 	
 	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
 	private static ImageIcon questionMark = new ImageIcon("images/Question_mark.png");
 	private static ImageIcon normalTile = new ImageIcon("images/tile.png");
 	private static int bombFlags;
+	
 	private String currentTile;
 	private JLabel frontTile;
 	private LabelUnderTile labelUnderTile;

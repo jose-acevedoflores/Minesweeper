@@ -33,10 +33,12 @@ public class GameFunctions {
 	
 		playPanelFront = new JPanel(new GridLayout(gameSize,gameSize));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
+	//	playPanelFront.setMaximumSize(new Dimension(900, 900));
 		playPanelFront.setMaximumSize(new Dimension(465, 465));
 		
 		playPanelBelow = new JPanel(new GridLayout(gameSize,gameSize));
 		playPanelBelow.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		//playPanelBelow.setMaximumSize(new Dimension(900, 900));
 		playPanelBelow.setMaximumSize(new Dimension(465, 465));
 	}
 
