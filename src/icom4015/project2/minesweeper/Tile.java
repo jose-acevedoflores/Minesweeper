@@ -48,6 +48,15 @@ public class Tile extends Observable{
 	}
 	
 	/**
+	 * Gets the number associated with the tile under this fron tile.
+	 * @return the number in this tile.
+	 */
+	public int getUnderTileLabelNumber()
+	{
+		return labelUnderTile.getNumberHere();
+	}
+	
+	/**
 	 * Gets the front label (tile, flag or ? sign) associated with this position.
 	 * @return the label
 	 */
@@ -82,6 +91,12 @@ public class Tile extends Observable{
 		labelUnderTile.setNumber(n);
 	}
 	
+	public void setFrontTileLabel()
+	{
+		frontTile.setIcon(null);
+		currentTile = "under";
+	}
+	
 	
 	/**
 	 * 
@@ -99,18 +114,7 @@ public class Tile extends Observable{
 			{
 				if(!currentTile.equals("flag")&& !GameFunctions.lost)
 				{
-					try{
-						if(labelUnderTile.getNumberHere() == 0)
-						{
-							for(int i = 0 ;  i < 1; i++)
-							{
-								System.out.println("a");
-							}
-						}
-					}
-					catch(NullPointerException w){
-						System.out.println("OOps");	
-					}
+					
 					
 					if(labelUnderTile.getLabel().getIcon() != null)
 					{
@@ -119,8 +123,12 @@ public class Tile extends Observable{
 					}
 					else
 					{
-						ImageIcon t = new ImageIcon("images/amir2.JPG");
+						ImageIcon t = new ImageIcon("images/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 						frontTile.setIcon(t);
+					}
+					if(labelUnderTile.getNumberHere() == 0)
+					{
+						GameFunctions.revealEmptyStreak();
 					}
 					currentTile = "under";
 					if(labelUnderTile.bombHere())
@@ -171,7 +179,7 @@ public class Tile extends Observable{
 		public void mouseReleased(MouseEvent arg0) 
 		{
 			if(!GameFunctions.lost)
-				System.out.println("Scary face is on");
+				System.out.println("Scary face is off");
 		}
 
 		

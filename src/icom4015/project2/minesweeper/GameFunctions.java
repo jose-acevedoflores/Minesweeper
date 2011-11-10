@@ -8,11 +8,11 @@ import javax.swing.border.BevelBorder;
 
 public class GameFunctions {
 	
-	private Tile[][] frontTiles;
+	private static Tile[][] frontTiles;
 	private MineGenerator mineGenerator;
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
-	private int gameSize = 9;
+	private static int gameSize = 9;
 	protected static boolean lost=false;
 	
 	/**
@@ -231,7 +231,7 @@ public class GameFunctions {
 			frontTiles[gameSize-1][gameSize-1].setUnderTileNumber(bombsNear);
 		}
 		
-		
+		this.setEmptyStreak();
 		
 		//Adding the tiles to the panels.
 		for(int i = 0; i < gameSize; i++)
@@ -262,5 +262,30 @@ public class GameFunctions {
 		return playPanelBelow;
 	}
 	
+	/**
+	 * Reveals the empty streaks associated with the tile pressed. 
+	 */
+	public static void revealEmptyStreak()
+	{
+		for(int i = 0 ; i < gameSize ; i++)
+		{
+			for(int j = 0 ; j < gameSize ; j++)
+			{
+				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
+				{
+					frontTiles[i][j].setFrontTileLabel();
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Sets the empty streaks for a game. By empty streak I mean when a tile that has a zero under it is clicked all the tiles that also contain 
+	 * zero are freed up until the ones that have a number.
+	 */
+	private void setEmptyStreak()
+	{
+		
+	}
 	
 }

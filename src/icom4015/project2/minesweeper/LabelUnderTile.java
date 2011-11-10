@@ -26,13 +26,15 @@ public class LabelUnderTile {
 		if(bombHere)
 		{
 			image = new ImageIcon("images/bomb.jpg");
+			numberHere=-1;
 		}
 		else
 		{
 			//image = new ImageIcon("images/amir2.JPG");
+			numberHere=0;
 		}
 		
-		numberHere=0;
+		
 		this.bombHere = bombHere;
 		label = new JLabel(image);
 	}
