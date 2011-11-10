@@ -170,13 +170,6 @@ public class GameFunctions {
 		return playPanelBelow;
 	}
 	
-	/**
-	 * Reveals the empty streaks associated with the tile pressed. 
-	 */
-	public static void revealEmptyStreak(int row , int column)
-	{
-		setStreak(row+1,column+1);
-	}
 	
 	/**
 	 * Sets the empty streaks for a game. By empty streak I mean when a tile that has a zero under it is clicked all the tiles that also contain 
@@ -204,8 +197,9 @@ public class GameFunctions {
 	}
 	
 	/**
-	 * 
-	 * @param n
+	 * This methods check's if a given number n is present in an ArrayList.
+	 * @param n the number to look in the arrayList.
+	 * @param uncovered the arraylist of uncovered tiles so far.
 	 * @return
 	 */
 	public static boolean isNumberInArrayList(int n , ArrayList<Integer> uncovered)
@@ -218,6 +212,17 @@ public class GameFunctions {
 
 		return false;
 	}
+	
+	
+	
+	/**
+	 * Reveals the empty streaks associated with the tile pressed. 
+	 */
+	public static void revealEmptyStreak(int row , int column)
+	{
+		setStreak(row+1,column+1);
+	}
+	
 	
 	/**
 	 * 
