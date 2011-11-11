@@ -30,7 +30,7 @@ public class GameFunctions {
 		
 		mineGenerator =  new MineGenerator();
 		frontTiles = new Tile[gameSize][gameSize];
-		streak =  new boolean[gameSize+2][gameSize+2];
+		streak =  new boolean[gameSize][gameSize];
 		num = new int[gameSize][gameSize][1];
 	
 		playPanelFront = new JPanel(new GridLayout(gameSize,gameSize));
@@ -74,70 +74,43 @@ public class GameFunctions {
 				d++;
 				frontTiles[i][j] = new Tile(labelUnderTile, i, j);
 			}
-		}
-		
-		/*-----------------------------------------------------------------*/
-		/* In this code segment we introduce an integer array that controls the loop that sets the number of bombs near a given tile.
-		   It's bigger by one column at the right and one at the left and one row on the top and one row on the bottom.
-		   This extra rows are filled with -2. This represents an illegal position because the index
-		 	for the frontTiles array would be out of bounds and there is no tile at that position.
-		 */
-		int[][] biggerGrid = new int[gameSize+2][gameSize+2];
-		
-			for(int j =0; j < gameSize+2; j++)
-			{
-				biggerGrid[0][j]=-2;
-			}
-			for(int j =0; j < gameSize+2; j++)
-			{
-				biggerGrid[gameSize+1][j]=-2;
-			}
-		
-			for(int i =0; i < gameSize+2; i++)
-			{
-				biggerGrid[i][0]=-2;
-			}
-			for(int i =0; i < gameSize+2; i++)
-			{
-				biggerGrid[i][gameSize+1]=-2;
-			}
-	
+		}	
 		
 		/*--------------------------------------------------------------------*/
 		
 		//In this loop we fill the labels near the bombs with numbers.
-		for(int i = 0 ; i < gameSize + 1; i++)
+		for(int i = 0 ; i < gameSize ; i++)
 		{
-			for(int j = 0 ; j < gameSize + 1  ; j++)
+			for(int j = 0 ; j < gameSize  ; j++)
 			{
 				int bombsNear=0;
 				
-				if(biggerGrid[i][j]!=-2) // If the tile we are checking is not an empty tile then-> 
+				if(i>=0 && i < gameSize && j >=0 && j < gameSize) // If the tile we are checking is not an empty tile then-> 
 				{
 					
-					if(!frontTiles[i-1][j-1].checkBomb()) // -> Check if this tile doesn't contain a bomb.
+					if(!frontTiles[i][j].checkBomb()) // -> Check if this tile doesn't contain a bomb.
 					{										
-						//The -1 in the index is to get the equivalent position for the fronTiles array  given the indexes of the biggerGrid array.
 						
 						for(int a = i-1; a < i+2 ; a++) // In here we go from one row before up to one row below the tile we are at. 
 						{
 							for(int b = j-1 ; b < j+2 ; b++)
 							{
-								if(biggerGrid[a][b]!=-2) // If that tile is not on an illegal zone then we can check if there is a bomb there
+								if(a>=0 && a < gameSize && b >=0 && b < gameSize) // If that tile is not on an illegal zone then we can check if there is a bomb there
 								{
-									if(frontTiles[a-1][b-1].checkBomb())
+									if(frontTiles[a][b].checkBomb())
 									{
 										bombsNear++;
 									}
 								}
 							}
 						}
-						frontTiles[i-1][j-1].setUnderTileNumber(bombsNear);
+						frontTiles[i][j].setUnderTileNumber(bombsNear);
 					}//end if
 				}
 			}
 		}
 		
+		/*--------------------------------------------------------------------*/
 
 		GameFunctions.setEmptyStreak();
 		
@@ -219,23 +192,10 @@ public class GameFunctions {
 	 */
 	public static void revealEmptyStreak(int row , int column)
 	{
-		setStreak(row,column);
-	}
-	
-	
-	/**
-	 * 
-	 * @param iPrime
-	 * @param jPrime
-	 * @param streakSize
-	 * @param currentBlock
-	 */
-	public static void setStreak(int iPrime, int jPrime)
-	{
-		
-		for(int i = iPrime-1; i < iPrime+2; i++)
+
+		for(int i = row-1; i < row+2; i++)
 		{
-			for(int j = jPrime-1 ; j < jPrime+2; j++)
+			for(int j = column-1 ; j < column+2; j++)
 			{
 				if(i>=0 && i < gameSize && j>=0 && j < gameSize)
 				{	
@@ -263,7 +223,7 @@ public class GameFunctions {
 							}
 						}
 			/*----------------------------------------------------------*/
-						setStreak(i,j);	
+						revealEmptyStreak(i,j);	
 					}
 				}//Index controling if
 
@@ -271,6 +231,7 @@ public class GameFunctions {
 		}
 		return;
 	}
+	
 	
 	private static int[][][] num;
 	private static ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
