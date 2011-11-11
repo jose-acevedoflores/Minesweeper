@@ -3,7 +3,6 @@ package icom4015.project2.minesweeper;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -85,13 +84,13 @@ public class GameFunctions {
 			{
 				int bombsNear=0;
 				
-				if(i>=0 && i < gameSize && j >=0 && j < gameSize) // If the tile we are checking is not an empty tile then-> 
-				{
+				if(i>=0 && i < gameSize && j >=0 && j < gameSize) // Check if the index are in the correct range. 
+				{												 // This controls the index from going out of bounds for the tiles in the outer rows and columns.  	
 					
 					if(!frontTiles[i][j].checkBomb()) // -> Check if this tile doesn't contain a bomb.
 					{										
 						
-						for(int a = i-1; a < i+2 ; a++) // In here we go from one row before up to one row below the tile we are at. 
+						for(int a = i-1; a < i+2 ; a++) // In here we go from one row before, up to one row below the tile we are at. 
 						{
 							for(int b = j-1 ; b < j+2 ; b++)
 							{
@@ -172,7 +171,7 @@ public class GameFunctions {
 	 * This methods check's if a given number n is present in an ArrayList.
 	 * @param n the number to look in the arrayList.
 	 * @param uncovered the arraylist of uncovered tiles so far.
-	 * @return
+	 * @return true if the number is present, false otherwise.
 	 */
 	public static boolean isNumberInArrayList(int n , ArrayList<Integer> uncovered)
 	{
