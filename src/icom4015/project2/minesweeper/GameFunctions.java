@@ -177,19 +177,18 @@ public class GameFunctions {
 	 */
 	private static void setEmptyStreak()
 	{
-		
-		int streakSize = gameSize+1;
+	
 		int d = 0 ; 
-		for(int i = 1 ; i < streakSize ; i++)
+		for(int i = 0 ; i < gameSize ; i++)
 		{
-			for(int j = 1 ; j < streakSize ; j++)
+			for(int j = 0 ; j < gameSize ; j++)
 			{
-				if(frontTiles[i-1][j-1].getUnderTileLabelNumber() == 0)
+				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
 				{
 					streak[i][j] = true;
 					
 				}
-				num[i-1][j-1][0] = d;
+				num[i][j][0] = d;
 				d++;
 			}
 		}
@@ -220,7 +219,7 @@ public class GameFunctions {
 	 */
 	public static void revealEmptyStreak(int row , int column)
 	{
-		setStreak(row+1,column+1);
+		setStreak(row,column);
 	}
 	
 	
@@ -238,31 +237,35 @@ public class GameFunctions {
 		{
 			for(int j = jPrime-1 ; j < jPrime+2; j++)
 			{
-				
-				if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i-1][j-1][0], zeroesUncovered))
-				{
-					frontTiles[i-1][j-1].setFrontTileLabel();
-					zeroesUncovered.add(num[i-1][j-1][0]);
-					
-					for(int a = i-2; a < i+1; a++)
-					{	
-						for(int b = j-2; b < j+1; b++)
-						{
-							if(a>=0 && a < gameSize && b>=0 && b < gameSize)
+				if(i>=0 && i < gameSize && j>=0 && j < gameSize)
+				{	
+					if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i][j][0], zeroesUncovered))
+					{
+						frontTiles[i][j].setFrontTileLabel();
+						zeroesUncovered.add(num[i][j][0]);
+						
+			/*----------------------------------------------------------*/
+						
+						for(int a = i-1; a < i+2; a++)
+						{	
+							for(int b = j-1; b < j+2; b++)
 							{
-								if(frontTiles[a][b].getUnderTileLabelNumber() != 0 
-										&&frontTiles[a][b].getUnderTileLabelNumber() != -1 
-										&& !GameFunctions.isNumberInArrayList(num[a][b][0], numsUncovered))
+								if(a>=0 && a < gameSize && b>=0 && b < gameSize)
 								{
-									frontTiles[a][b].setFrontTileLabel();
-									numsUncovered.add(num[a][b][0]);
+									if(		frontTiles[a][b].getUnderTileLabelNumber()!=0
+											&& frontTiles[a][b].getUnderTileLabelNumber() != -1
+											&& !GameFunctions.isNumberInArrayList(num[i][j][0], numsUncovered))
+									{
+										frontTiles[a][b].setFrontTileLabel();
+										numsUncovered.add(num[a][b][0]);
+									}
 								}
 							}
 						}
+			/*----------------------------------------------------------*/
+						setStreak(i,j);	
 					}
-					
-					setStreak(i,j);
-				}
+				}//Index controling if
 
 			}
 		}
