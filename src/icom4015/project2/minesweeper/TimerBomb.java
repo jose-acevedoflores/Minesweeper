@@ -19,9 +19,9 @@ public class TimerBomb implements ActionListener
 	private int minutes= 0;
 	
 	
-	public TimerBomb()
+	public TimerBomb(int  bombNumber)
 	{
-		flagLabelCounter= 10;
+		flagLabelCounter=  bombNumber;
 		timer = new JLabel(getTime());
 		bombsLeft = new JLabel(Integer.toString(flagLabelCounter));
 	}

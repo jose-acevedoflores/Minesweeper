@@ -23,10 +23,10 @@ public class Panels extends JFrame
 	protected static GameFunctions gameFunctions;
 	
 	
-	public void setPanels(int row, int column)
+	public void setPanels(int row, int column, int bombNumber)
 	{
-		gameFunctions = new GameFunctions(row,column);
-		tb = new TimerBomb();
+		gameFunctions = new GameFunctions(row,column, bombNumber);
+		tb = new TimerBomb( bombNumber);
 		timer = new Timer(1000, tb);
 		
 		setTitle("Minesweeper");
@@ -68,7 +68,7 @@ public class Panels extends JFrame
 		//Adding the playing area.
 		all.add(gameFunctions.getPlayPanel());
 
-		//UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
+		UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
 
 		add(all);
 

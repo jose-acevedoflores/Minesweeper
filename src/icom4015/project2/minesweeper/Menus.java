@@ -94,7 +94,7 @@ public class Menus {
 	private class GameLevelListener implements ActionListener
 	{
 
-		private boolean menuClicked = false;
+		
 		@Override
 		public void actionPerformed(ActionEvent arg) 
 		{
@@ -106,7 +106,7 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(rows, columns);
+				Minesweeper.setNewGame(rows, columns, 10);
 			}
 			else if(arg.getActionCommand().equals("    Intermidiate"))
 			{
@@ -115,7 +115,7 @@ public class Menus {
 				intermidiate.setLabel("\u2713  Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(rows, columns);
+				Minesweeper.setNewGame(rows, columns, 40);
 				
 			}
 			else if(arg.getActionCommand().equals("    Expert"))
@@ -125,7 +125,7 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("\u2713  Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(rows, columns);
+				Minesweeper.setNewGame(rows, columns,60);
 			
 			}
 			else if(arg.getActionCommand().equals("    Custom..."))

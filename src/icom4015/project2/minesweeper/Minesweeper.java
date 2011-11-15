@@ -16,7 +16,7 @@ public class Minesweeper {
 	public static void main(String[] args) 
 	{
 		//Sets a beginner level game
-		mainWindow.setPanels(9, 9);
+		mainWindow.setPanels(9, 9, 10);
 	}
 	
 	/**
@@ -24,11 +24,11 @@ public class Minesweeper {
 	 * @param row
 	 * @param column
 	 */
-	public static void setNewGame(int row , int column)
+	public static void setNewGame(int row , int column, int  bombNumber)
 	{
 		mainWindow.dispose();
 		mainWindow = new Panels();
-		mainWindow.setPanels(row, column);
+		mainWindow.setPanels(row, column,  bombNumber);
 	}
 
 }

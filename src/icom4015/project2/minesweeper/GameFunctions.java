@@ -32,12 +32,12 @@ public class GameFunctions {
 	 * @param ft the frontTile array
 	 * @param mg the mineGenerator 
 	 */
-	public GameFunctions(int rows, int columns)
+	public GameFunctions(int rows, int columns, int bombNumber)
 	{
 		
 		gameRows = rows;
 		gameColumns = columns;
-		mineGenerator =  new MineGenerator();
+		mineGenerator =  new MineGenerator(rows , columns,  bombNumber);
 		frontTiles = new Tile[gameRows][gameColumns];
 		streak =  new boolean[gameRows][gameColumns];
 		num = new int[gameRows][gameColumns][1];
@@ -72,7 +72,7 @@ public class GameFunctions {
 				{
 					labelUnderTile = new LabelUnderTile(true);	
 					c++;
-					if(c==10)//Reset c so we don't get out of bounds.
+					if(c == mineGenerator.getHowManyBombs())//Reset c so we don't get out of bounds.
 						c=0;
 				}
 				else

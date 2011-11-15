@@ -9,25 +9,29 @@ import java.util.Random;
 public class MineGenerator {
 
 	private Random generator;
-	private int[] bombLocations = new int[10];
+	private int[] bombLocations;
+	private int thisManyBombs;
 	
 	/**
 	 * Creates the random generator and generates and number that corresponds to the tile where the bomb is going to be.
 	 */
-	public MineGenerator()
+	public MineGenerator(int rows, int columns, int bombNumber)
 	{
+		bombLocations = new int[bombNumber];
 		generator = new Random();
+		thisManyBombs = bombNumber;
+		int possiblePlaces = rows*columns;
 		int nextBomb = 0;
 		
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < bombLocations.length ; i++)
 		{
-			nextBomb =  generator.nextInt(81);
+			nextBomb =  generator.nextInt(possiblePlaces);
 			
 			for(int j=0; j < i; j++)
 			{
 				if(bombLocations[j] == nextBomb)
 				{
-					nextBomb =  generator.nextInt(81);
+					nextBomb =  generator.nextInt(possiblePlaces);
 					j=0;
 				}
 			}
@@ -61,6 +65,15 @@ public class MineGenerator {
 	public int[] getBombLocations()
 	{
 		return bombLocations;
+	}
+	
+	/**
+	 * Gets how many bombs are used in the current game
+	 * @return the bombs in this game.
+	 */
+	public int getHowManyBombs()
+	{
+		return thisManyBombs;
 	}
 	
 }
