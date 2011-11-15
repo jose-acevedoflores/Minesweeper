@@ -18,9 +18,6 @@ public class Menus {
 	private MenuItem expert;
 	private MenuItem custom;
 	
-	private MenuItem marks;
-	private MenuItem color;
-	private MenuItem sounds;
 	
 	private MenuItem bestTimes;
 	
@@ -57,18 +54,7 @@ public class Menus {
 		game.add(custom);
 		
 		game.addSeparator();
-		
-		marks = new MenuItem("\u2713  Marks(?)");
-		game.add(marks);
-		
-		color = new MenuItem("\u2713  Color");
-		game.add(color);
-		
-		sounds = new MenuItem("    Sounds");
-		game.add(sounds);
-		
-		game.addSeparator();
-		
+				
 		bestTimes= new MenuItem("    Best Times...");
 		game.add(bestTimes);
 		

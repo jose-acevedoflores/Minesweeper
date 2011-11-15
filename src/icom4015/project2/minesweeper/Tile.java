@@ -139,9 +139,9 @@ public class Tile {
 				{
 					
 					
-					if(labelUnderTile.getLabel().getIcon() != null)
+					if(labelUnderTile.getLabel().getIcon() != null) // If it's null the under it we have a number
 					{
-						img = (ImageIcon) getUnderTileLabel().getIcon();
+						img = (ImageIcon) getUnderTileLabel().getIcon();//this will be the bomb icon
 						frontTile.setIcon(img);
 					}
 					else
@@ -171,7 +171,7 @@ public class Tile {
 				{
 					frontTile.setIcon(questionMark);
 					bombFlags--;
-					Panels.setFlagsLabel(-1);
+					Panels.setFlagsLabel(-1); //This makes the bomb counter label on the frame increase by one
 					currentTile = "question";
 				}
 				else if(currentTile.equals("question") && !Panels.gameFunctions.lost)
@@ -183,7 +183,7 @@ public class Tile {
 				{
 					frontTile.setIcon(flag);
 					bombFlags++;
-					Panels.setFlagsLabel(1);
+					Panels.setFlagsLabel(1);//This makes the bomb counter label on the frame decrease by one
 					currentTile = "flag";
 				}
 			}
