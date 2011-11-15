@@ -152,49 +152,6 @@ public class GameFunctions {
 	
 	
 	/**
-	 * Sets the empty streaks for a game. By empty streak I mean when a tile that has a zero under it is clicked all the tiles that also contain 
-	 * zero are freed up until the ones that have a number.
-	 */
-	private void setEmptyStreak()
-	{
-	
-		int d = 0 ; 
-		for(int i = 0 ; i < gameRows ; i++)
-		{
-			for(int j = 0 ; j < gameColumns ; j++)
-			{
-				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
-				{
-					streak[i][j] = true;
-					
-				}
-				num[i][j][0] = d;
-				d++;
-			}
-		}
-		
-	}
-	
-	/**
-	 * This methods check's if a given number n is present in an ArrayList.
-	 * @param n the number to look in the arrayList.
-	 * @param uncovered the arraylist of uncovered tiles so far.
-	 * @return true if the number is present, false otherwise.
-	 */
-	public static boolean isNumberInArrayList(int n , ArrayList<Integer> uncovered)
-	{
-		for(int i = 0 ; i < uncovered.size(); i++)
-		{
-			if(n == uncovered.get(i))
-				return true;
-		}
-
-		return false;
-	}
-	
-	
-	
-	/**
 	 * Reveals the empty streaks associated with the tile pressed. 
 	 */
 	public void revealEmptyStreak(int row , int column)
@@ -239,6 +196,47 @@ public class GameFunctions {
 		return;
 	}
 	
+	
+	/**
+	 * Sets the empty streaks for a game. By empty streak I mean when a tile that has a zero under it is clicked all the tiles that also contain 
+	 * zero are freed up until the ones that have a number.
+	 */
+	private void setEmptyStreak()
+	{
+	
+		int d = 0 ; 
+		for(int i = 0 ; i < gameRows ; i++)
+		{
+			for(int j = 0 ; j < gameColumns ; j++)
+			{
+				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
+				{
+					streak[i][j] = true;
+					
+				}
+				num[i][j][0] = d;
+				d++;
+			}
+		}
+		
+	}
+	
+	/**
+	 * This methods check's if a given number n is present in an ArrayList.
+	 * @param n the number to look in the arrayList.
+	 * @param uncovered the arraylist of uncovered tiles so far.
+	 * @return true if the number is present, false otherwise.
+	 */
+	private static boolean isNumberInArrayList(int n , ArrayList<Integer> uncovered)
+	{
+		for(int i = 0 ; i < uncovered.size(); i++)
+		{
+			if(n == uncovered.get(i))
+				return true;
+		}
+
+		return false;
+	}
 	
 	
 	
