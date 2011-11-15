@@ -18,7 +18,7 @@ public class Tile {
 	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
 	private static ImageIcon questionMark = new ImageIcon("images/Question_mark.png");
 	private static ImageIcon normalTile = new ImageIcon("images/tile.png");
-	private static int bombFlags;
+	private int bombFlags;
 	
 	private String currentTile;
 	private JLabel frontTile;
@@ -73,7 +73,7 @@ public class Tile {
 	 * Gets the amount of flag labels on screen.
 	 * @return the amount of flag labels.
 	 */
-	public static int getFlagsOnScreen()
+	public int getFlagsOnScreen()
 	{
 		return bombFlags;
 	}
@@ -86,6 +86,7 @@ public class Tile {
 	{
 		return labelUnderTile.bombHere();
 	}
+	
 	/**
 	 * Sets the number under this tile.
 	 * @param n the number under this tile.
@@ -95,6 +96,11 @@ public class Tile {
 		labelUnderTile.setNumber(n);
 	}
 	
+	/**
+	 * This method is used to set the front label on this tile when the user
+	 * doesn't directly click on it. This happens when the cascade effect (clicking on an empty space)
+	 * takes effect.  
+	 */
 	public void setFrontTileLabel()
 	{
 		
@@ -111,7 +117,7 @@ public class Tile {
 		}
 	}
 	
-	
+/*--------------------------------Inner class----------------------------------*/	
 	/**
 	 * 
 	 * @author Jose L.
@@ -204,4 +210,6 @@ public class Tile {
 
 		
 	}
+/*--------------------------------Inner class----------------------------------*/	
+
 }

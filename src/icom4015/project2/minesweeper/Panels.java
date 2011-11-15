@@ -22,13 +22,13 @@ public class Panels extends JFrame
 	private static Menus menuBar = new Menus();
 	protected static GameFunctions gameFunctions;
 	
+	
 	public void setPanels(int row, int column)
 	{
 		gameFunctions = new GameFunctions(row,column);
 		tb = new TimerBomb();
 		timer = new Timer(1000, tb);
 		
-	//	JFrame frame = new JFrame("Minesweeper");
 		setTitle("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/mine-logo.png");
 		setIconImage(icon.getImage());
