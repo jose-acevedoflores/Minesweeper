@@ -9,13 +9,21 @@ import javax.swing.border.BevelBorder;
 
 public class GameFunctions {
 	
-	private static Tile[][] frontTiles;
+	
 	private MineGenerator mineGenerator;
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
-	private static int gameSize = 9;
-	protected static boolean lost=false;
+	
+	private static Tile[][] frontTiles;
+	private static int gameRows = 9;
+	private static int gameColumns = 9;
 	private static boolean[][] streak;
+	private static int[][][] num;
+	private static ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
+	private static ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
+	
+	protected static boolean lost=false;
+	
 
 	
 	/**
@@ -24,20 +32,20 @@ public class GameFunctions {
 	 * @param ft the frontTile array
 	 * @param mg the mineGenerator 
 	 */
-	public GameFunctions()
+	public GameFunctions(int rows, int columns)
 	{
 		
 		mineGenerator =  new MineGenerator();
-		frontTiles = new Tile[gameSize][gameSize];
-		streak =  new boolean[gameSize][gameSize];
-		num = new int[gameSize][gameSize][1];
+		frontTiles = new Tile[gameRows][gameColumns];
+		streak =  new boolean[gameRows][gameColumns];
+		num = new int[gameRows][gameColumns][1];
 	
-		playPanelFront = new JPanel(new GridLayout(gameSize,gameSize));
+		playPanelFront = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
 	//	playPanelFront.setMaximumSize(new Dimension(900, 900));
 		playPanelFront.setMaximumSize(new Dimension(465, 465));
 		
-		playPanelBelow = new JPanel(new GridLayout(gameSize,gameSize));
+		playPanelBelow = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelBelow.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		//playPanelBelow.setMaximumSize(new Dimension(900, 900));
 		playPanelBelow.setMaximumSize(new Dimension(465, 465));
@@ -56,9 +64,9 @@ public class GameFunctions {
 				//For example position 12 linearly corresponds to [1][3] and it's easier to work with. 
 		
 		//In this loop we create the labels that go under the tiles and we determine if the label should be a bomb.
-		for(int i = 0 ; i < gameSize ; i++)
+		for(int i = 0 ; i < gameRows ; i++)
 		{
-			for(int j = 0; j < gameSize; j++)
+			for(int j = 0; j < gameColumns; j++)
 			{
 				if(mineGenerator.getBombLocations()[c] == d)
 				{
@@ -78,13 +86,13 @@ public class GameFunctions {
 		/*--------------------------------------------------------------------*/
 		
 		//In this loop we fill the labels near the bombs with numbers.
-		for(int i = 0 ; i < gameSize ; i++)
+		for(int i = 0 ; i < gameRows ; i++)
 		{
-			for(int j = 0 ; j < gameSize  ; j++)
+			for(int j = 0 ; j < gameColumns  ; j++)
 			{
 				int bombsNear=0;
 				
-				if(i>=0 && i < gameSize && j >=0 && j < gameSize) // Check if the index are in the correct range. 
+				if(i>=0 && i < gameRows && j >=0 && j < gameColumns) // Check if the index are in the correct range. 
 				{												 // This controls the index from going out of bounds for the tiles in the outer rows and columns.  	
 					
 					if(!frontTiles[i][j].checkBomb()) // -> Check if this tile doesn't contain a bomb.
@@ -94,7 +102,7 @@ public class GameFunctions {
 						{
 							for(int b = j-1 ; b < j+2 ; b++)
 							{
-								if(a>=0 && a < gameSize && b >=0 && b < gameSize) // If that tile is not on an illegal zone then we can check if there is a bomb there
+								if(a>=0 && a < gameRows && b >=0 && b < gameColumns) // If that tile is not on an illegal zone then we can check if there is a bomb there
 								{
 									if(frontTiles[a][b].checkBomb())
 									{
@@ -114,9 +122,9 @@ public class GameFunctions {
 		GameFunctions.setEmptyStreak();
 		
 		//Adding the tiles to the panels.
-		for(int i = 0; i < gameSize; i++)
+		for(int i = 0; i < gameRows; i++)
 		{
-			for(int j = 0; j < gameSize; j++)
+			for(int j = 0; j < gameColumns; j++)
 			{
 				playPanelFront.add(frontTiles[i][j].getFrontTileLabel());
 				playPanelBelow.add(frontTiles[i][j].getUnderTileLabel());				
@@ -151,9 +159,9 @@ public class GameFunctions {
 	{
 	
 		int d = 0 ; 
-		for(int i = 0 ; i < gameSize ; i++)
+		for(int i = 0 ; i < gameRows ; i++)
 		{
-			for(int j = 0 ; j < gameSize ; j++)
+			for(int j = 0 ; j < gameColumns ; j++)
 			{
 				if(frontTiles[i][j].getUnderTileLabelNumber() == 0)
 				{
@@ -196,7 +204,7 @@ public class GameFunctions {
 		{
 			for(int j = column-1 ; j < column+2; j++)
 			{
-				if(i>=0 && i < gameSize && j>=0 && j < gameSize)
+				if(i>=0 && i < gameRows && j>=0 && j < gameColumns)
 				{	
 					if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i][j][0], zeroesUncovered))
 					{
@@ -209,11 +217,11 @@ public class GameFunctions {
 						{	
 							for(int b = j-1; b < j+2; b++)
 							{
-								if(a>=0 && a < gameSize && b>=0 && b < gameSize)
+								if(a>=0 && a < gameRows && b>=0 && b < gameColumns)
 								{
 									if(		frontTiles[a][b].getUnderTileLabelNumber()!=0
 											&& frontTiles[a][b].getUnderTileLabelNumber() != -1
-											&& !GameFunctions.isNumberInArrayList(num[i][j][0], numsUncovered))
+											&& !GameFunctions.isNumberInArrayList(num[a][b][0], numsUncovered))
 									{
 										frontTiles[a][b].setFrontTileLabel();
 										numsUncovered.add(num[a][b][0]);
@@ -232,9 +240,7 @@ public class GameFunctions {
 	}
 	
 	
-	private static int[][][] num;
-	private static ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
-	private static ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
+	
 	
 	
 }

@@ -49,7 +49,7 @@ public class Minesweeper {
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 		
 		//Set the game
-		GameFunctions gameFunctions = new GameFunctions();
+		GameFunctions gameFunctions = new GameFunctions(9,12);
 		gameFunctions.setGameReady();
 
 		//Adding the playing area.
