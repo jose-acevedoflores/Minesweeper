@@ -140,7 +140,7 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("\u2713  Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(expertRows, expertColumns,99);
+				Minesweeper.setNewGame(expertRows, expertColumns, 99);
 			
 			}
 			else if(arg.getActionCommand().equals("    Custom..."))

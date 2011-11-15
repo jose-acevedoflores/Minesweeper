@@ -1,7 +1,6 @@
 package icom4015.project2.minesweeper;
 
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -25,7 +24,7 @@ public class LabelUnderTile {
 	{
 		if(bombHere)
 		{
-			image = new ImageIcon("images/bomb.jpg");
+			image = new ImageIcon("images/image48x48/bomb.jpg");
 			numberHere=-1;
 		}
 		else

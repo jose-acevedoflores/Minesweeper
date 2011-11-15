@@ -15,9 +15,9 @@ import javax.swing.JLabel;
  */
 public class Tile {
 	
-	private static ImageIcon flag = new ImageIcon("images/Red-Flag.jpg");
-	private static ImageIcon questionMark = new ImageIcon("images/Question_mark.png");
-	private static ImageIcon normalTile = new ImageIcon("images/tile.png");
+	private static ImageIcon flag = new ImageIcon("images/image48x48/Red-Flag.jpg");
+	private static ImageIcon questionMark = new ImageIcon("images/image48x48/Question_mark.png");
+	private static ImageIcon normalTile = new ImageIcon("images/image48x48/tile.png");
 	private int bombFlags;
 	
 	private String currentTile;
@@ -110,7 +110,7 @@ public class Tile {
 		}
 		else
 		{
-			ImageIcon t = new ImageIcon("images/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
+			ImageIcon t = new ImageIcon("images/image48x48/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 			frontTile.setIcon(t);
 			currentTile = "under";
 
@@ -146,7 +146,7 @@ public class Tile {
 					}
 					else
 					{
-						ImageIcon t = new ImageIcon("images/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
+						ImageIcon t = new ImageIcon("images/image48x48/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 						frontTile.setIcon(t);
 					}
 					if(labelUnderTile.getNumberHere() == 0)
