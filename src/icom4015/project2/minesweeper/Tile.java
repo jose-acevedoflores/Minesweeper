@@ -73,7 +73,7 @@ public class Tile {
 	 * Gets the amount of flag labels on screen.
 	 * @return the amount of flag labels.
 	 */
-	public int getFlagsOnScreen()
+	public static int getFlagsOnScreen()
 	{
 		return bombFlags;
 	}
@@ -126,6 +126,9 @@ public class Tile {
 			ImageIcon img;
 			if(arg0.getButton() == MouseEvent.BUTTON1)
 			{
+				if(!Panels.timer.isRunning() && !GameFunctions.lost)
+					Panels.setTimer(true);
+				
 				if(!currentTile.equals("flag")&& !GameFunctions.lost)
 				{
 					
@@ -148,6 +151,7 @@ public class Tile {
 					if(labelUnderTile.bombHere())
 					{
 						System.out.println("Boooom");
+						Panels.setTimer(false);
 						GameFunctions.lost=true;
 					}
 					

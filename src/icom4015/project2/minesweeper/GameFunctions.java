@@ -15,8 +15,8 @@ public class GameFunctions {
 	private JPanel playPanelBelow;
 	
 	private static Tile[][] frontTiles;
-	private static int gameRows = 9;
-	private static int gameColumns = 9;
+	private static int gameRows;
+	private static int gameColumns;
 	private static boolean[][] streak;
 	private static int[][][] num;
 	private static ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
@@ -35,6 +35,8 @@ public class GameFunctions {
 	public GameFunctions(int rows, int columns)
 	{
 		
+		gameRows = rows;
+		gameColumns = columns;
 		mineGenerator =  new MineGenerator();
 		frontTiles = new Tile[gameRows][gameColumns];
 		streak =  new boolean[gameRows][gameColumns];
@@ -42,12 +44,10 @@ public class GameFunctions {
 	
 		playPanelFront = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
-	//	playPanelFront.setMaximumSize(new Dimension(900, 900));
 		playPanelFront.setMaximumSize(new Dimension(465, 465));
 		
 		playPanelBelow = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelBelow.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		//playPanelBelow.setMaximumSize(new Dimension(900, 900));
 		playPanelBelow.setMaximumSize(new Dimension(465, 465));
 	}
 
