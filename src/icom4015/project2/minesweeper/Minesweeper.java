@@ -8,6 +8,7 @@ package icom4015.project2.minesweeper;
 public class Minesweeper {
 
 	private static Panels mainWindow = new Panels();
+	private static Menus menuBar = new Menus();
 	
 	/**
 	 * Main method
@@ -16,7 +17,7 @@ public class Minesweeper {
 	public static void main(String[] args) 
 	{
 		//Sets a beginner level game
-		mainWindow.setPanels(9, 9, 10);
+		mainWindow.setPanels(9, 9, 10,menuBar);
 	}
 	
 	/**
@@ -28,7 +29,7 @@ public class Minesweeper {
 	{
 		mainWindow.dispose();
 		mainWindow = new Panels();
-		mainWindow.setPanels(row, column,  bombNumber);
+		mainWindow.setPanels(row, column,  bombNumber,menuBar);
 	}
 
 }

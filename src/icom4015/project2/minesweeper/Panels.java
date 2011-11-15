@@ -19,11 +19,10 @@ public class Panels extends JFrame
 	private static TimerBomb tb;// = new TimerBomb();
  	protected static Timer timer;// = new Timer(1000, tb);//This creates the timer
  	
-	private static Menus menuBar = new Menus();
 	protected static GameFunctions gameFunctions;
 	
 	
-	public void setPanels(int row, int column, int bombNumber)
+	public void setPanels(int row, int column, int bombNumber, Menus menuBar)
 	{
 		gameFunctions = new GameFunctions(row,column, bombNumber);
 		tb = new TimerBomb( bombNumber);
