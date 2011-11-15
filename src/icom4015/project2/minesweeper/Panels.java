@@ -20,7 +20,7 @@ public class Panels extends JFrame
  	protected static Timer timer;// = new Timer(1000, tb);//This creates the timer
  	
 	private static Menus menuBar = new Menus();
-	private static GameFunctions gameFunctions;
+	protected static GameFunctions gameFunctions;
 	
 	public void setPanels(int row, int column)
 	{

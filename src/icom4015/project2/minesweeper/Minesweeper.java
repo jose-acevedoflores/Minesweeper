@@ -8,17 +8,22 @@ package icom4015.project2.minesweeper;
 public class Minesweeper {
 
 	private static Panels mainWindow = new Panels();
+	
 	/**
 	 * Main method
 	 * @param args not used
 	 */
 	public static void main(String[] args) 
 	{
-		
+		//Sets a beginner level game
 		mainWindow.setPanels(9, 9);
 	}
 	
-	
+	/**
+	 * Set a new game with the given rows and columns.
+	 * @param row
+	 * @param column
+	 */
 	public static void setNewGame(int row , int column)
 	{
 		mainWindow.dispose();

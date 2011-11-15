@@ -126,10 +126,10 @@ public class Tile {
 			ImageIcon img;
 			if(arg0.getButton() == MouseEvent.BUTTON1)
 			{
-				if(!Panels.timer.isRunning() && !GameFunctions.lost)
+				if(!Panels.timer.isRunning() && !Panels.gameFunctions.lost)
 					Panels.setTimer(true);
 				
-				if(!currentTile.equals("flag")&& !GameFunctions.lost)
+				if(!currentTile.equals("flag")&& !Panels.gameFunctions.lost)
 				{
 					
 					
@@ -145,14 +145,14 @@ public class Tile {
 					}
 					if(labelUnderTile.getNumberHere() == 0)
 					{
-						GameFunctions.revealEmptyStreak(row,column);
+						Panels.gameFunctions.revealEmptyStreak(row,column);
 					}
 					currentTile = "under";
 					if(labelUnderTile.bombHere())
 					{
 						System.out.println("Boooom");
 						Panels.setTimer(false);
-						GameFunctions.lost=true;
+						Panels.gameFunctions.lost=true;
 					}
 					
 				}
@@ -161,19 +161,19 @@ public class Tile {
 			//Right click pressed
 			else if(arg0.getButton() == MouseEvent.BUTTON3)
 			{	
-				if(currentTile.equals("flag") && !GameFunctions.lost)
+				if(currentTile.equals("flag") && !Panels.gameFunctions.lost)
 				{
 					frontTile.setIcon(questionMark);
 					bombFlags--;
 					Panels.setFlagsLabel(-1);
 					currentTile = "question";
 				}
-				else if(currentTile.equals("question") && !GameFunctions.lost)
+				else if(currentTile.equals("question") && !Panels.gameFunctions.lost)
 				{	
 					frontTile.setIcon(normalTile);
 					currentTile = "normalTile";
 				}
-				else if(currentTile.equals("normalTile") && !GameFunctions.lost)
+				else if(currentTile.equals("normalTile") && !Panels.gameFunctions.lost)
 				{
 					frontTile.setIcon(flag);
 					bombFlags++;
@@ -198,7 +198,7 @@ public class Tile {
 		@Override
 		public void mouseReleased(MouseEvent arg0) 
 		{
-			if(!GameFunctions.lost)
+			if(!Panels.gameFunctions.lost)
 				System.out.println("Scary face is off");
 		}
 

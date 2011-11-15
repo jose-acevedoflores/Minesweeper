@@ -14,15 +14,15 @@ public class GameFunctions {
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
 	
-	private static Tile[][] frontTiles;
-	private static int gameRows;
-	private static int gameColumns;
-	private static boolean[][] streak;
-	private static int[][][] num;
-	private static ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
-	private static ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
+	private Tile[][] frontTiles;
+	private int gameRows;
+	private int gameColumns;
+	private boolean[][] streak;
+	private int[][][] num;
+	private ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
+	private ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
 	
-	protected static boolean lost=false;
+	protected boolean lost=false;
 	
 
 	
@@ -119,7 +119,7 @@ public class GameFunctions {
 		
 		/*--------------------------------------------------------------------*/
 
-		GameFunctions.setEmptyStreak();
+		setEmptyStreak();
 		
 		//Adding the tiles to the panels.
 		for(int i = 0; i < gameRows; i++)
@@ -155,7 +155,7 @@ public class GameFunctions {
 	 * Sets the empty streaks for a game. By empty streak I mean when a tile that has a zero under it is clicked all the tiles that also contain 
 	 * zero are freed up until the ones that have a number.
 	 */
-	private static void setEmptyStreak()
+	private void setEmptyStreak()
 	{
 	
 		int d = 0 ; 
@@ -197,7 +197,7 @@ public class GameFunctions {
 	/**
 	 * Reveals the empty streaks associated with the tile pressed. 
 	 */
-	public static void revealEmptyStreak(int row , int column)
+	public void revealEmptyStreak(int row , int column)
 	{
 
 		for(int i = row-1; i < row+2; i++)
