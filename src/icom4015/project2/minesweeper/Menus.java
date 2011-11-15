@@ -28,11 +28,11 @@ public class Menus {
 	private int beginnerRows=9;
 	private int beginnerColumns=9;
 	
-	private int intermidiateRows=11;
-	private int intermidiateColumns=15;
+	private int intermidiateRows=16;
+	private int intermidiateColumns=16;
 	
-	private int expertRows=15;
-	private int expertColumns = 20; 
+	private int expertRows=16;
+	private int expertColumns = 30; 
 	
 	/**
 	 * Create the menus that will appear on the frame.
@@ -113,7 +113,7 @@ public class Menus {
 				}
 				else if(expert.getLabel().equals("\u2713  Expert"))
 				{
-					Minesweeper.setNewGame(expertRows, expertColumns,60);
+					Minesweeper.setNewGame(expertRows, expertColumns,99);
 				}
 			}
 			
@@ -136,12 +136,11 @@ public class Menus {
 			}
 			else if(arg.getActionCommand().equals("    Expert"))
 			{
-				int rows = 15, columns = 20;
 				beginner.setLabel("    Beginner");
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("\u2713  Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(rows, columns,60);
+				Minesweeper.setNewGame(expertRows, expertColumns,99);
 			
 			}
 			else if(arg.getActionCommand().equals("    Custom..."))
