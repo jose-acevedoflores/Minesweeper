@@ -14,17 +14,16 @@ public class TimerBomb implements ActionListener
 
 	private JLabel bombsLeft;
 	private JLabel timer = new JLabel(getTime());
-	private int bombsLeftNum = 10;
+	private int flagLabelCounter;
 	private int seconds= 0;
 	private int minutes= 0;
 	
 	
 	public TimerBomb()
 	{
-		bombsLeftNum -= Tile.getFlagsOnScreen();
+		flagLabelCounter= 10;
 		timer = new JLabel(getTime());
-		bombsLeft = new JLabel(Integer.toString(bombsLeftNum));
-
+		bombsLeft = new JLabel(Integer.toString(flagLabelCounter));
 	}
 
 
@@ -34,6 +33,12 @@ public class TimerBomb implements ActionListener
 		bombsLeft.setBackground(Color.black);
 		bombsLeft.setForeground(Color.red);
 		return bombsLeft;
+	}
+	
+	public void setFlagsLabel(int increaseORDecrease)
+	{
+		flagLabelCounter -=  increaseORDecrease;
+		bombsLeft.setText(Integer.toString(flagLabelCounter));
 	}
 
 	public JLabel timerText()

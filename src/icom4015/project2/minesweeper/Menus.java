@@ -25,14 +25,13 @@ public class Menus {
 	private MenuItem bestTimes;
 	
 	private MenuItem exit;
-	
+	private ActionListener gL; 
 	/**
 	 * Create the menus that will appear on the frame.
 	 */
 	public Menus()
 	{
-		ActionListener gL = new GameLevelListener();
-		
+		gL = new GameLevelListener();
 		menuBar = new MenuBar();
 		game = new Menu("Game");
 		
@@ -91,33 +90,43 @@ public class Menus {
 		return menuBar;
 	}
 	
+	
 	private class GameLevelListener implements ActionListener
 	{
 
+		private boolean menuClicked = false;
 		@Override
 		public void actionPerformed(ActionEvent arg) 
 		{
 	
 			if(arg.getActionCommand().equals("    Beginner"))
 			{
+				int rows = 9, columns = 9;
 				beginner.setLabel("\u2713  Beginner");
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("    Custom...");
+				Minesweeper.setNewGame(rows, columns);
 			}
 			else if(arg.getActionCommand().equals("    Intermidiate"))
 			{
+				int rows = 10, columns = 15;
 				beginner.setLabel("    Beginner");
 				intermidiate.setLabel("\u2713  Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("    Custom...");
+				Minesweeper.setNewGame(rows, columns);
+				
 			}
 			else if(arg.getActionCommand().equals("    Expert"))
 			{
+				int rows = 15, columns = 20;
 				beginner.setLabel("    Beginner");
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("\u2713  Expert");
 				custom.setLabel("    Custom...");
+				Minesweeper.setNewGame(rows, columns);
+			
 			}
 			else if(arg.getActionCommand().equals("    Custom..."))
 			{
@@ -125,10 +134,13 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("\u2713  Custom...");
+				//Minesweeper.setNewGame(rows, columns);
+		
 			}
 			
 		}
 		
+
 	}
 	
 }

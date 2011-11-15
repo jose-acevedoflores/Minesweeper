@@ -165,6 +165,7 @@ public class Tile {
 				{
 					frontTile.setIcon(questionMark);
 					bombFlags--;
+					Panels.setFlagsLabel(-1);
 					currentTile = "question";
 				}
 				else if(currentTile.equals("question") && !GameFunctions.lost)
@@ -176,6 +177,7 @@ public class Tile {
 				{
 					frontTile.setIcon(flag);
 					bombFlags++;
+					Panels.setFlagsLabel(1);
 					currentTile = "flag";
 				}
 			}

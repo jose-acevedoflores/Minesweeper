@@ -13,32 +13,38 @@ import javax.swing.Timer;
 import javax.swing.border.BevelBorder;
 
 
-public class Panels 
+public class Panels extends JFrame
 {
-
-	private static TimerBomb tb = new TimerBomb();
- 	protected static Timer timer = new Timer(1000, tb);//This creates the timer
 	
+	private static TimerBomb tb;// = new TimerBomb();
+ 	protected static Timer timer;// = new Timer(1000, tb);//This creates the timer
+ 	
+	private static Menus menuBar = new Menus();
+	private static GameFunctions gameFunctions;
 	
-	
-	public void setPanels()
+	public void setPanels(int row, int column)
 	{
-
-		JFrame frame = new JFrame("Minesweeper");
+		gameFunctions = new GameFunctions(row,column);
+		tb = new TimerBomb();
+		timer = new Timer(1000, tb);
+		
+	//	JFrame frame = new JFrame("Minesweeper");
+		setTitle("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/mine-logo.png");
+		setIconImage(icon.getImage());
+		setResizable(false);
 		JPanel timerAndBombPanel = new JPanel();
 		JPanel all = new JPanel();
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 650);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(500, 650);
 
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
 		all.setBorder(new BevelBorder(BevelBorder.RAISED));
 
 		//Setting the menus
-		Menus menuBar = new Menus();
-		frame.setMenuBar(menuBar.getMenuBar());
+		setMenuBar(menuBar.getMenuBar());
 
 
 		//Adding empty space between the menus and the timer panel.
@@ -55,19 +61,25 @@ public class Panels
 		//Adding empty space between the two components
 		all.add(Box.createRigidArea(new Dimension(0,25)));
 
+		
 		//Set the game
-		GameFunctions gameFunctions = new GameFunctions(9,9);
 		gameFunctions.setGameReady();
 
 		//Adding the playing area.
 		all.add(gameFunctions.getPlayPanel());
 
-		UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
+		//UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
 
-		frame.add(all);
-		frame.setIconImage(icon.getImage());
-		frame.setResizable(false);
-		frame.setVisible(true);
+		add(all);
+
+		setVisible(true);
+
+	}
+	
+	
+	public static void setFlagsLabel(int increaseORDecrease)
+	{
+		tb.setFlagsLabel(increaseORDecrease);
 	}
 
 	public static void setTimer(boolean isFirstTime)

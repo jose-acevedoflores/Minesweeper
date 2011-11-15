@@ -7,13 +7,23 @@ package icom4015.project2.minesweeper;
  */
 public class Minesweeper {
 
+	private static Panels mainWindow = new Panels();
 	/**
 	 * Main method
 	 * @param args not used
 	 */
 	public static void main(String[] args) 
 	{
-		(new Panels()).setPanels();
+		
+		mainWindow.setPanels(9, 9);
+	}
+	
+	
+	public static void setNewGame(int row , int column)
+	{
+		mainWindow.dispose();
+		mainWindow = new Panels();
+		mainWindow.setPanels(row, column);
 	}
 
 }
