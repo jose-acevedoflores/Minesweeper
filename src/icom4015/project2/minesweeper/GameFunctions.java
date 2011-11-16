@@ -166,7 +166,9 @@ public class GameFunctions {
 			{
 				if(i>=0 && i < gameRows && j>=0 && j < gameColumns)
 				{	
-					if(streak[i][j] && !GameFunctions.isNumberInArrayList(num[i][j][0], zeroesUncovered))
+					if(streak[i][j] 
+							&& !GameFunctions.isNumberInArrayList(num[i][j][0], zeroesUncovered)
+							&& !frontTiles[i][j].getCurrentTile().equals("flag"))
 					{
 						frontTiles[i][j].setFrontTileLabel();
 						zeroesUncovered.add(num[i][j][0]);
@@ -181,6 +183,7 @@ public class GameFunctions {
 								{
 									if(		frontTiles[a][b].getUnderTileLabelNumber()!=0
 											&& frontTiles[a][b].getUnderTileLabelNumber() != -1
+											&& !frontTiles[a][b].getCurrentTile().equals("flag")
 											&& !GameFunctions.isNumberInArrayList(num[a][b][0], numsUncovered))
 									{
 										frontTiles[a][b].setFrontTileLabel();
@@ -192,7 +195,7 @@ public class GameFunctions {
 			/*----------------------------------------------------------*/
 						revealEmptyStreak(i,j);	
 					}
-				}//Index controling if
+				}//Index controlling if
 
 			}
 		}

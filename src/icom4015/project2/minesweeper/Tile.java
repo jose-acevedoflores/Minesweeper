@@ -68,6 +68,15 @@ public class Tile {
 	{
 		return frontTile;
 	}
+	
+	/**
+	 * Gets the string label of this style.
+	 * @return 
+	 */
+	public String getCurrentTile()
+	{
+		return currentTile;
+	}
 
 	/**
 	 * Gets the amount of flag labels on screen.
