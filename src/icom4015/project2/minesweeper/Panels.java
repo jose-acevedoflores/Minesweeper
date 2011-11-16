@@ -18,7 +18,7 @@ public class Panels extends JFrame
 {
 	
 	private static TimerBomb tb;// = new TimerBomb();
- 	protected static Timer timer;// = new Timer(1000, tb);//This creates the timer
+ 	private static Timer timer;// = new Timer(1000, tb);//This creates the timer
  	
 	protected static GameFunctions gameFunctions;
 	protected static  JButton mainButton;
@@ -62,7 +62,7 @@ public class Panels extends JFrame
 		timerAndBombPanel.setLayout(new BorderLayout());//added line for layout
 		timerAndBombPanel.add(tb.getBombsLeft(), BorderLayout.WEST);
 		
-		ImageIcon buttonIcon = new ImageIcon("images/image20x20/startgame.png"); // creates the image for the button
+		ImageIcon buttonIcon = new ImageIcon("images/image48x48/startgame.png"); // creates the image for the button
 		mainButton.setIcon(buttonIcon); //sets the image for the button
 		mainButton.setPreferredSize(new Dimension(60,50)); //sets the size for the button
 		forButton.add(mainButton);//sends the button to a panel
@@ -96,6 +96,20 @@ public class Panels extends JFrame
 		tb.setFlagsLabel(increaseORDecrease);
 	}
 
+	/**
+	 * Gets the timer object associated with the ongoing game.
+	 * @return the timer object.
+	 */
+	public static Timer getTimer()
+	{
+		return timer;
+	}
+	
+	/**
+	 * 
+	 * @param isFirstTime true if this is the first tile being pressed.
+	 * false if the player lost or won the game.
+	 */
 	public static void setTimer(boolean isFirstTime)
 	{
 		if (isFirstTime )

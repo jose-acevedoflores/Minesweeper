@@ -107,15 +107,17 @@ public class Tile {
 		
 		if( labelUnderTile.getNumberHere() == 0)
 		{	frontTile.setIcon(null);
+			if(!currentTile.equals("under"))
+				moves++;	
 			currentTile = "under";
-			moves++;
 		}
 		else
 		{
 			ImageIcon t = new ImageIcon("images/image20x20/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 			frontTile.setIcon(t);
+			if(!currentTile.equals("under"))
+				moves++;	
 			currentTile = "under";
-			moves++;
 		}
 	}
 	
@@ -143,14 +145,14 @@ public class Tile {
 
 			if(arg0.getButton() == MouseEvent.BUTTON1)
 			{
-				if(!Panels.timer.isRunning() && !Panels.gameFunctions.lost)
+				if(!Panels.getTimer().isRunning() && !Panels.gameFunctions.lost && !Panels.gameFunctions.won )
 					Panels.setTimer(true);
 				
-				if(!currentTile.equals("flag")&& !currentTile.equals("under")&&!Panels.gameFunctions.lost)
+				if(!currentTile.equals("flag")&& !currentTile.equals("under")&&!Panels.gameFunctions.lost&& !Panels.gameFunctions.won)
 				{
+					currentTile = "under";
 					
-					
-					if(labelUnderTile.getLabel().getIcon() == null && labelUnderTile.getNumberHere() != 0 ) // If it's null the under it we have a bomb icon
+					if(labelUnderTile.getLabel().getIcon() == null && labelUnderTile.getNumberHere() != 0 ) // If it's null the under it we have a number 
 					{
 						ImageIcon t = new ImageIcon("images/image20x20/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 						frontTile.setIcon(t);
@@ -161,7 +163,6 @@ public class Tile {
 						Panels.gameFunctions.revealEmptyStreak(row,column);
 						moves++;
 					}
-					currentTile = "under";
 					if(labelUnderTile.bombHere())
 					{
 						frontTile.setIcon(new ImageIcon("images/image20x20/bomb-explode.png"));
@@ -174,10 +175,12 @@ public class Tile {
 					}
 					
 				}
-				System.out.println(moves);
-				if(moves == Panels.gameFunctions.gameColumns*Panels.gameFunctions.gameRows)
+				
+				if(moves == (Panels.gameFunctions.gameColumns*Panels.gameFunctions.gameRows)- Panels.gameFunctions.mineGenerator.getHowManyBombs())
 				{
-					System.out.println("Won");
+					Panels.gameFunctions.won=true;
+					Panels.mainButton.setIcon(new ImageIcon("images/image48x48/wongame.png"));
+					Panels.setTimer(false);
 				}
 			}
 
@@ -228,7 +231,7 @@ public class Tile {
 		{
 			if(!Panels.gameFunctions.lost)
 			{
-				ImageIcon buttonIcon = new ImageIcon("images/image20x20/startgame.png"); 
+				ImageIcon buttonIcon = new ImageIcon("images/image48x48/startgame.png"); 
 				Panels.mainButton.setIcon(buttonIcon);
 			}
 		}

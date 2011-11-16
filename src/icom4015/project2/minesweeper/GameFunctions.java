@@ -10,7 +10,7 @@ import javax.swing.border.BevelBorder;
 public class GameFunctions {
 	
 	
-	private MineGenerator mineGenerator;
+	
 	private JPanel playPanelFront;
 	private JPanel playPanelBelow;
 	
@@ -22,7 +22,10 @@ public class GameFunctions {
 	
 	protected int gameRows;
 	protected int gameColumns;
+	
+	protected MineGenerator mineGenerator;
 	protected boolean lost=false;
+	protected boolean won = false;
 	
 
 	
