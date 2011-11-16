@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class BestTimes implements ActionListener {
 
-	private static File bestTimesHistory = new File("/Users/Home/Desktop/MinesweeperBestTimes.txt");
+	private static File bestTimesHistory = new File("MinesweeperBestTimes.txt");
 	
 	public static void setBestTime(int time, String difficulty) throws FileNotFoundException
 	{
