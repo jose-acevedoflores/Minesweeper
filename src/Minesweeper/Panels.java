@@ -1,5 +1,7 @@
 package Minesweeper;
 
+import icom4015.project2.minesweeper.UnderLabelFrame;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -28,35 +30,43 @@ public class Panels extends JFrame
 	protected static GameFunctions gameFunctions;
 	protected static JButton mainButton;
 	
+	/**
+	 * Sets a new panel that contains everything that can be seen on the screen. 
+	 * @param row the numbers of rows.
+	 * @param column the number of columns.
+	 * @param bombNumber the number of bombs.
+	 * @param menuBar the menu bar.
+	 * @param panelButton the smiley button.
+	 * @param difficulty beginner, intermidiate or expert.
+	 */
 	public void setPanels(int row, int column, int bombNumber, Menus menuBar, JButton panelButton, String difficulty)
 	{
 		gameFunctions = new GameFunctions(row,column, bombNumber, difficulty);
 		tb = new TimerBomb( bombNumber);
 		timer = new Timer(1000, tb);
-		
 		mainButton = panelButton;
-		
+	
+		/*---------Preparing the frame size-----*/
 		setTitle("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/image48x48/mine-logo.png");
 		setIconImage(icon.getImage());
 		setResizable(false);
-		JPanel timerAndBombPanel = new JPanel();
-		JPanel all = new JPanel();
-		JPanel forButton = new JPanel();   // creates a JPanel for the button
-
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		int frameWidth = column*20 + 40;
 		int frameHeight = row*20 +190;
 		setSize(frameWidth+20, frameHeight);
-
+		/*-------------------------------------*/
+		
+		JPanel timerAndBombPanel = new JPanel();
+		JPanel all = new JPanel();
+		JPanel forButton = new JPanel();   // creates a JPanel for the button
+		
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
 		all.setBorder(new BevelBorder(BevelBorder.RAISED));
 
 		//Setting the menus
 		setMenuBar(menuBar.getMenuBar());
-
 
 		//Adding empty space between the menus and the timer panel.
 		all.add(Box.createRigidArea(new Dimension(0,25)));
@@ -67,15 +77,16 @@ public class Panels extends JFrame
 		timerAndBombPanel.setLayout(new BorderLayout());//added line for layout
 		timerAndBombPanel.add(tb.getBombsLeft(), BorderLayout.WEST);
 		
+		/*------------Preparing the button -------------------*/
 		ImageIcon buttonIcon = new ImageIcon("images/image48x48/startgame.png"); // creates the image for the button
 		mainButton.setIcon(buttonIcon); //sets the image for the button
 		mainButton.setPreferredSize(new Dimension(60,50)); //sets the size for the button
 		forButton.add(mainButton);//sends the button to a panel
-		
-
 		timerAndBombPanel.add(forButton, BorderLayout.CENTER);//adds the button to the middle
+		
 		timerAndBombPanel.add(tb.timerText(), BorderLayout.EAST);//added for timer
-		all.add(timerAndBombPanel);
+		all.add(timerAndBombPanel);  
+		/*---------------------------------------------------*/
 
 		//Adding empty space between the two components
 		all.add(Box.createRigidArea(new Dimension(0,25)));
@@ -87,7 +98,8 @@ public class Panels extends JFrame
 		//Adding the playing area.
 		all.add(gameFunctions.getPlayPanel());
 
-		//UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
+		//This class is for testing purposes
+		UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel(), frameHeight, frameWidth);
 
 		add(all);
 

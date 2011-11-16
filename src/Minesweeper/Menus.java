@@ -216,6 +216,7 @@ public class Menus {
 
 					customBombs = Math.max(customBombs, 10);//check if the user gave a negative or less than minimum bombs number as an input
 
+					//If the user gave more bombs than available spaces we subtract 40 bombs 
 					if(customRows*customColumns -40 < customBombs  )
 					{
 						customBombs = customRows*customColumns -40;

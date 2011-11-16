@@ -34,8 +34,10 @@ public class GameFunctions {
 	/**
 	 * Creates a game functions object that sets the playing area size (playPanel) and the 
 	 * mineGenarator used to place the mines in random locations by the setGameReady method. 
-	 * @param ft the frontTile array
-	 * @param mg the mineGenerator 
+	 * @param rows the rows of this game
+	 * @param columns the columns of this game
+	 * @param bombNumber the bombNumber of this game.
+	 * @param fifficulty the difficulty of this game.
 	 */
 	public GameFunctions(int rows, int columns, int bombNumber, String difficulty)
 	{
@@ -80,6 +82,7 @@ public class GameFunctions {
 			{
 				if(mineGenerator.getBombLocations()[c] == d)
 				{
+					System.out.println("bomb: "+c);
 					labelUnderTile = new LabelUnderTile(true);	
 					c++;
 					if(c == mineGenerator.getHowManyBombs())//Reset c so we don't get out of bounds.

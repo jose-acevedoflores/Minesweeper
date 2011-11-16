@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 
 /**
- * This class takes care of exiting the program when the button is clicked. 
+ * This class takes care of exiting the program when the menu item is clicked is clicked. 
  */
 public class ExitListener implements ActionListener {
 	

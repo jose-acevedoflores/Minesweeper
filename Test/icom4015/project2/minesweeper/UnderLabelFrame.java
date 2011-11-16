@@ -12,7 +12,7 @@ import javax.swing.border.BevelBorder;
 
 public class UnderLabelFrame {
 
-	public UnderLabelFrame(JPanel panel)
+	public UnderLabelFrame(JPanel panel, int frameHeight, int frameWidth)
 	{
 		JFrame frame = new JFrame("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/mine-logo.png");
@@ -20,7 +20,7 @@ public class UnderLabelFrame {
 		JPanel all = new JPanel();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(900, 900);
+		frame.setSize( frameWidth+20, frameHeight);
 		
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
@@ -36,7 +36,7 @@ public class UnderLabelFrame {
 		
 		//Adding the timer and bombs left panel
 		timerAndBombPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		timerAndBombPanel.setMaximumSize(new Dimension(900,60));
+		timerAndBombPanel.setMaximumSize(new Dimension(frameWidth,60));
 		all.add(timerAndBombPanel);
 		
 		//Adding empty space between the two components

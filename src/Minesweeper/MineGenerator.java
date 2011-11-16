@@ -23,6 +23,8 @@ public class MineGenerator {
 		int possiblePlaces = rows*columns;
 		int nextBomb = 0;
 		
+		System.out.println("This many bombs: "+thisManyBombs);
+		
 		for(int i = 0; i < bombLocations.length ; i++)
 		{
 			nextBomb =  generator.nextInt(possiblePlaces);
@@ -32,7 +34,9 @@ public class MineGenerator {
 				if(bombLocations[j] == nextBomb)
 				{
 					nextBomb =  generator.nextInt(possiblePlaces);
-					j=0;
+					//Set it to minus one so that when we find a repeated bomb 
+					//the for loop will start from 0 (j++)
+					j=-1; 
 				}
 			}
 			
@@ -56,6 +60,8 @@ public class MineGenerator {
 		}
 		
 	
+		for(int i = 0 ; i < bombLocations.length - 1; i++)
+			System.out.println(i+": "+bombLocations[i]);
 	}
 	
 	/**

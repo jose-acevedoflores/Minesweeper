@@ -82,7 +82,7 @@ public class Panels extends JFrame
 		//Adding the playing area.
 		all.add(gameFunctions.getPlayPanel());
 
-		UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
+	//	UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel());
 
 		add(all);
 
