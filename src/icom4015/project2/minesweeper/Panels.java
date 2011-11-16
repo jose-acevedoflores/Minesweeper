@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -27,6 +28,7 @@ public class Panels extends JFrame
 		gameFunctions = new GameFunctions(row,column, bombNumber);
 		tb = new TimerBomb( bombNumber);
 		timer = new Timer(1000, tb);
+		JButton mainButton = new JButton();// creates the button
 		
 		setTitle("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/image48x48/mine-logo.png");
@@ -34,6 +36,7 @@ public class Panels extends JFrame
 		setResizable(false);
 		JPanel timerAndBombPanel = new JPanel();
 		JPanel all = new JPanel();
+		JPanel forButton = new JPanel();   // creates a jpanel for the button
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -57,6 +60,14 @@ public class Panels extends JFrame
 		timerAndBombPanel.setMaximumSize(new Dimension(frameWidth,60));
 		timerAndBombPanel.setLayout(new BorderLayout());//added line for layout
 		timerAndBombPanel.add(tb.getBombsLeft(), BorderLayout.WEST);
+		
+		ImageIcon buttonIcon = new ImageIcon("images/image20x20/startgame.png"); // creates the image for the button
+		mainButton.setIcon(buttonIcon); //sets the image for the button
+		mainButton.setPreferredSize(new Dimension(60,50)); //sets the size for the button
+		forButton.add(mainButton);//sends the button to a panel
+		
+
+		timerAndBombPanel.add(forButton, BorderLayout.CENTER);//adds the button to the middle
 		timerAndBombPanel.add(tb.timerText(), BorderLayout.EAST);//added for timer
 		all.add(timerAndBombPanel);
 
