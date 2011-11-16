@@ -2,8 +2,7 @@ package Minesweeper;
 
 import java.util.Random;
 /**
- * Generates the mines at Random positions from 1 - 81.
- * @author 
+ * Generates the mines at Random positions from 1 - row*columns. 
  *
  */
 public class MineGenerator {
@@ -23,7 +22,6 @@ public class MineGenerator {
 		int possiblePlaces = rows*columns;
 		int nextBomb = 0;
 		
-		System.out.println("This many bombs: "+thisManyBombs);
 		
 		for(int i = 0; i < bombLocations.length ; i++)
 		{
@@ -41,7 +39,7 @@ public class MineGenerator {
 			}
 			
 			bombLocations[i] = nextBomb;
-			//Check bug: if a random number repeats then we get less than ten bombs
+
 		}
 		
 		
@@ -59,9 +57,6 @@ public class MineGenerator {
 			}
 		}
 		
-	
-		for(int i = 0 ; i < bombLocations.length - 1; i++)
-			System.out.println(i+": "+bombLocations[i]);
 	}
 	
 	/**

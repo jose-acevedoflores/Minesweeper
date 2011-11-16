@@ -82,7 +82,6 @@ public class GameFunctions {
 			{
 				if(mineGenerator.getBombLocations()[c] == d)
 				{
-					System.out.println("bomb: "+c);
 					labelUnderTile = new LabelUnderTile(true);	
 					c++;
 					if(c == mineGenerator.getHowManyBombs())//Reset c so we don't get out of bounds.

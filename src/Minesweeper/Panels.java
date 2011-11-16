@@ -1,6 +1,6 @@
 package Minesweeper;
 
-import icom4015.project2.minesweeper.UnderLabelFrame;
+//import icom4015.project2.minesweeper.UnderLabelFrame;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -99,7 +99,7 @@ public class Panels extends JFrame
 		all.add(gameFunctions.getPlayPanel());
 
 		//This class is for testing purposes
-		UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel(), frameHeight, frameWidth);
+		//UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel(), frameHeight, frameWidth);
 
 		add(all);
 
