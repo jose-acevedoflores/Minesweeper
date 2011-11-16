@@ -126,6 +126,15 @@ public class Tile {
 		}
 	}
 	
+	public void setFrontTileOnLost()
+	{
+		if(labelUnderTile.getNumberHere() == -1)			
+		{	
+			frontTile.setIcon(labelUnderTile.getLabel().getIcon());
+			currentTile = "under";
+		}
+	}
+	
 /*--------------------------------Inner class----------------------------------*/	
 	/**
 	 * 
@@ -167,7 +176,7 @@ public class Tile {
 					{
 						frontTile.setIcon(new ImageIcon("images/image20x20/bomb-explode.png"));
 						
-						
+						Panels.gameFunctions.revealBombs(row, column);
 						
 						Panels.setTimer(false);
 						Panels.gameFunctions.lost=true;

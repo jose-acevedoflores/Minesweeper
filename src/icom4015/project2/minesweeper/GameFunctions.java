@@ -227,10 +227,23 @@ public class GameFunctions {
 		
 	}
 	
-	public void revealBombs()
+	public void revealBombs(int thisBombRow, int thisBombColumn)
 	{
-		mineGenerator.getBombLocations();
+		int[] bombLocations= mineGenerator.getBombLocations();
 		
+		for(int a = 0 ; a < bombLocations.length; a++)
+		{
+			for(int i = 0 ; i < gameRows ; i++)
+			{
+				for(int j =0 ; j < gameColumns ; j++)
+				{
+					if(num[i][j][0] == bombLocations[a] && !( i == thisBombRow && j ==thisBombColumn ))
+					{
+						frontTiles[i][j].setFrontTileOnLost();
+					}
+				}
+			}
+		}
 		
 		
 	}

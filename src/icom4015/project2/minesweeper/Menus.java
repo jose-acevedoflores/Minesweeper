@@ -42,9 +42,9 @@ public class Menus {
 	private int expertColumns = 30;
 	private int expertBombs = 99;
 	
-	private int customRows=0;
-	private int customColumns =0;
-	private int customBombs=0;
+	private int customRows=9;
+	private int customColumns =9;
+	private int customBombs=10;
 	
 	/**
 	 * Create the menus that will appear on the frame.
@@ -181,9 +181,17 @@ public class Menus {
 				columns = JOptionPane.showInputDialog("Type columns: ");
 				bombs = JOptionPane.showInputDialog("Bombs: ");
 				
-				customRows = Integer.parseInt(rows); // max 24
-				customColumns = Integer.parseInt(columns); // max 30
-				customBombs = Integer.parseInt(bombs); // max 667
+				
+				try{
+					customRows = Math.min(Integer.parseInt(rows),  24); // max 24
+					customColumns = Math.min(Integer.parseInt(columns), 30); // max 30
+					customBombs = Math.min(Integer.parseInt(bombs), 667); // max 667
+				}
+				catch(NumberFormatException e)
+				{
+					JOptionPane.showMessageDialog(null, "Illegal arguments");
+				}
+				
 				
 				Minesweeper.setNewGame(customRows, customColumns, customBombs);
 		
