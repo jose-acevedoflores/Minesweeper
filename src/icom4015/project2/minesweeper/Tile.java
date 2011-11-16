@@ -221,7 +221,7 @@ public class Tile {
 			
 			if(!Panels.gameFunctions.lost)
 			{
-				ImageIcon expectativeFace = new ImageIcon("images/image20x20/amir2.JPG");
+				ImageIcon expectativeFace = new ImageIcon("images/image48x48/expectativeFace.png");
 				Panels.mainButton.setIcon(expectativeFace);
 			}
 		}
