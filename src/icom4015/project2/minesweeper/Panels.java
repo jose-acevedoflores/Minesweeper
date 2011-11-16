@@ -37,8 +37,8 @@ public class Panels extends JFrame
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		int frameWidth = row*20 + 40;
-		int frameHeight = column*20 +190;
+		int frameWidth = column*20 + 40;
+		int frameHeight = row*20 +190;
 		setSize(frameWidth+20, frameHeight);
 
 		//Setting the look of the all panel.

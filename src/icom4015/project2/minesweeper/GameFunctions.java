@@ -42,8 +42,8 @@ public class GameFunctions {
 		streak =  new boolean[gameRows][gameColumns];
 		num = new int[gameRows][gameColumns][1];
 		
-		int frameWidth = rows*20 + 40;
-		int frameHeight = columns*20 +40;
+		int frameWidth = columns*20 + 40;
+		int frameHeight = rows*20 + 40;
 	
 		playPanelFront = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));

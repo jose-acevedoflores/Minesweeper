@@ -20,7 +20,7 @@ public class UnderLabelFrame {
 		JPanel all = new JPanel();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 650);
+		frame.setSize(900, 900);
 		
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
@@ -36,7 +36,7 @@ public class UnderLabelFrame {
 		
 		//Adding the timer and bombs left panel
 		timerAndBombPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		timerAndBombPanel.setMaximumSize(new Dimension(465,60));
+		timerAndBombPanel.setMaximumSize(new Dimension(900,60));
 		all.add(timerAndBombPanel);
 		
 		//Adding empty space between the two components
