@@ -51,20 +51,27 @@ public class TimerBomb implements ActionListener
 
 	public String getTime()
 	{
-		if (seconds <10)
-			return minutes + ":0" + seconds;
-		else return minutes + ":" + seconds;
+		//if (seconds <10)
+			//return minutes + ":0" + seconds;
+		//else return minutes + ":" + seconds;
+		
+		if(seconds < 10)
+			return "00"+seconds;
+		else if(seconds < 100)
+			return "0"+seconds;
+		else
+			return ""+seconds;
 	}
 
 
 	public void actionPerformed(ActionEvent arg0) 
 	{
 
-		if (seconds == 59)
-		{
-			seconds = 0;
-			minutes++;
-		}
+		//if (seconds == 59)
+		//{
+			//seconds = 0;
+			//minutes++;
+		//}
 		
 		seconds++;
 		timer.setText(getTime());

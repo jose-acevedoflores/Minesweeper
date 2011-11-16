@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 public class Menus {
 
 	private JButton mainButton;
+	private String difficulty= "beginner";
 	
 	private MenuBar menuBar;
 	private Menu game;
@@ -86,6 +87,7 @@ public class Menus {
 		game.addSeparator();
 				
 		bestTimes= new MenuItem("    Best Times...");
+		bestTimes.addActionListener(new BestTimes());
 		game.add(bestTimes);
 		
 		game.addSeparator();
@@ -109,9 +111,22 @@ public class Menus {
 		return menuBar;
 	}
 	
+	/**
+	 * Gets the button that contains the smiley. 
+	 * @return the button in the center-top of the frame.
+	 */
 	public JButton getMainButton()
 	{
 		return mainButton;
+	}
+	
+	/**
+	 * Gets the difficulty of this game.
+	 * @return the difficulty.
+	 */
+	public String getDifficulty()
+	{
+		return difficulty;
 	}
 	
 	
@@ -144,6 +159,7 @@ public class Menus {
 			
 			else if(arg.getActionCommand().equals("    Beginner"))
 			{
+				difficulty = "beginner";
 				beginner.setLabel("\u2713  Beginner");
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("    Expert");
@@ -152,6 +168,7 @@ public class Menus {
 			}
 			else if(arg.getActionCommand().equals("    Intermidiate"))
 			{
+				difficulty = "intermidiate";
 				beginner.setLabel("    Beginner");
 				intermidiate.setLabel("\u2713  Intermidiate");
 				expert.setLabel("    Expert");
@@ -161,6 +178,7 @@ public class Menus {
 			}
 			else if(arg.getActionCommand().equals("    Expert"))
 			{
+				difficulty = "expert";
 				beginner.setLabel("    Beginner");
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("\u2713  Expert");

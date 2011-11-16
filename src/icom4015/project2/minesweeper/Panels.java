@@ -21,11 +21,11 @@ public class Panels extends JFrame
  	private static Timer timer;// = new Timer(1000, tb);//This creates the timer
  	
 	protected static GameFunctions gameFunctions;
-	protected static  JButton mainButton;
+	protected static JButton mainButton;
 	
-	public void setPanels(int row, int column, int bombNumber, Menus menuBar, JButton panelButton)
+	public void setPanels(int row, int column, int bombNumber, Menus menuBar, JButton panelButton, String difficulty)
 	{
-		gameFunctions = new GameFunctions(row,column, bombNumber);
+		gameFunctions = new GameFunctions(row,column, bombNumber, difficulty);
 		tb = new TimerBomb( bombNumber);
 		timer = new Timer(1000, tb);
 		
@@ -90,11 +90,24 @@ public class Panels extends JFrame
 
 	}
 	
-	
+	/**
+	 * Updates the label on the frame containing how many bombs are left.
+	 * @param increaseORDecrease 1 if we added a flag, -1 if we deleted a flag.
+	 */
 	public static void setFlagsLabel(int increaseORDecrease)
 	{
 		tb.setFlagsLabel(increaseORDecrease);
 	}
+	
+	/**
+	 * Gets the TimerBomb object associated with the current game.
+	 * @return the timer bomb.
+	 */
+	public static TimerBomb getTimerBomb()
+	{
+		return tb;
+	}
+	
 
 	/**
 	 * Gets the timer object associated with the ongoing game.

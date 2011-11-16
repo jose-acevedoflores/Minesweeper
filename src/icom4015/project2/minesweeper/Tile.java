@@ -4,6 +4,7 @@ package icom4015.project2.minesweeper;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -181,6 +182,17 @@ public class Tile {
 					Panels.gameFunctions.won=true;
 					Panels.mainButton.setIcon(new ImageIcon("images/image48x48/wongame.png"));
 					Panels.setTimer(false);
+					
+					try{
+						int time = Integer.parseInt(Panels.getTimerBomb().getTime());
+						System.out.println("time"+time);
+						BestTimes.setBestTime(time, Panels.gameFunctions.difficulty);
+					}
+					catch (FileNotFoundException e)
+					{
+						System.out.println(e.getMessage());
+					}
+					
 				}
 			}
 

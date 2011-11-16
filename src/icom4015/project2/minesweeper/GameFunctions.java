@@ -27,6 +27,8 @@ public class GameFunctions {
 	protected boolean lost=false;
 	protected boolean won = false;
 	
+	protected String difficulty;
+	
 
 	
 	/**
@@ -35,9 +37,10 @@ public class GameFunctions {
 	 * @param ft the frontTile array
 	 * @param mg the mineGenerator 
 	 */
-	public GameFunctions(int rows, int columns, int bombNumber)
+	public GameFunctions(int rows, int columns, int bombNumber, String difficulty)
 	{
 		
+		this.difficulty = difficulty;
 		gameRows = rows;
 		gameColumns = columns;
 		mineGenerator =  new MineGenerator(rows , columns,  bombNumber);
