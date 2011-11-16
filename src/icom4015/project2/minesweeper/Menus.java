@@ -168,7 +168,7 @@ public class Menus {
 				Minesweeper.setNewGame(expertRows, expertColumns, expertBombs);
 			
 			}
-			else if(arg.getActionCommand().equals("    Custom..."))
+			else if(arg.getActionCommand().equals("    Custom...") || arg.getActionCommand().equals("\u2713  Custom...") )
 			{
 				beginner.setLabel("    Beginner");
 				intermidiate.setLabel("    Intermidiate");
@@ -185,7 +185,14 @@ public class Menus {
 				try{
 					customRows = Math.min(Integer.parseInt(rows),  24); // max 24
 					customColumns = Math.min(Integer.parseInt(columns), 30); // max 30
+					
 					customBombs = Math.min(Integer.parseInt(bombs), 667); // max 667
+					
+					if(customRows*customColumns -40 < customBombs  )
+					{
+						customBombs = customRows*customColumns -40;
+					}
+					
 				}
 				catch(NumberFormatException e)
 				{

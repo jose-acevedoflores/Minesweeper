@@ -15,13 +15,13 @@ public class GameFunctions {
 	private JPanel playPanelBelow;
 	
 	private Tile[][] frontTiles;
-	private int gameRows;
-	private int gameColumns;
 	private boolean[][] streak;
 	private int[][][] num;
 	private ArrayList<Integer> zeroesUncovered = new ArrayList<Integer>();
 	private ArrayList<Integer> numsUncovered = new ArrayList<Integer>();
 	
+	protected int gameRows;
+	protected int gameColumns;
 	protected boolean lost=false;
 	
 
@@ -54,6 +54,7 @@ public class GameFunctions {
 		playPanelBelow.setMaximumSize(new Dimension(frameWidth , frameHeight));
 	}
 
+	
 	/**
 	 * Set the bomb at the locations the were created using the MineGenerator.
 	 */

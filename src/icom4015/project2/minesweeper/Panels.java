@@ -21,14 +21,15 @@ public class Panels extends JFrame
  	protected static Timer timer;// = new Timer(1000, tb);//This creates the timer
  	
 	protected static GameFunctions gameFunctions;
-
+	protected static  JButton mainButton;
 	
-	public void setPanels(int row, int column, int bombNumber, Menus menuBar, JButton mainButton)
+	public void setPanels(int row, int column, int bombNumber, Menus menuBar, JButton panelButton)
 	{
 		gameFunctions = new GameFunctions(row,column, bombNumber);
 		tb = new TimerBomb( bombNumber);
 		timer = new Timer(1000, tb);
-
+		
+		mainButton = panelButton;
 		
 		setTitle("Minesweeper");
 		ImageIcon icon = new ImageIcon("images/image48x48/mine-logo.png");

@@ -18,7 +18,7 @@ public class Tile {
 	private static ImageIcon flag = new ImageIcon("images/image20x20/Red-Flag.jpg");
 	private static ImageIcon questionMark = new ImageIcon("images/image20x20/Question_mark.png");
 	private static ImageIcon normalTile = new ImageIcon("images/image20x20/tile.png");
-	private int bombFlags;
+	private static int moves;
 	
 	private String currentTile;
 	private JLabel frontTile;
@@ -40,6 +40,7 @@ public class Tile {
 		currentTile = "normalTile";
 		this.row = row;
 		this.column = column;
+		moves=0;
 	}
 
 	/**
@@ -77,15 +78,6 @@ public class Tile {
 	{
 		return currentTile;
 	}
-
-	/**
-	 * Gets the amount of flag labels on screen.
-	 * @return the amount of flag labels.
-	 */
-	public int getFlagsOnScreen()
-	{
-		return bombFlags;
-	}
 	
 	/**
 	 * Checks if there is a bomb under this tile.
@@ -113,16 +105,17 @@ public class Tile {
 	public void setFrontTileLabel()
 	{
 		
-		if(labelUnderTile.getNumberHere() == 0)
+		if( labelUnderTile.getNumberHere() == 0)
 		{	frontTile.setIcon(null);
 			currentTile = "under";
+			moves++;
 		}
 		else
 		{
 			ImageIcon t = new ImageIcon("images/image20x20/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 			frontTile.setIcon(t);
 			currentTile = "under";
-
+			moves++;
 		}
 	}
 	
@@ -134,6 +127,7 @@ public class Tile {
 			currentTile = "under";
 		}
 	}
+
 	
 /*--------------------------------Inner class----------------------------------*/	
 	/**
@@ -147,29 +141,25 @@ public class Tile {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 
-			ImageIcon img;
 			if(arg0.getButton() == MouseEvent.BUTTON1)
 			{
 				if(!Panels.timer.isRunning() && !Panels.gameFunctions.lost)
 					Panels.setTimer(true);
 				
-				if(!currentTile.equals("flag")&& !Panels.gameFunctions.lost)
+				if(!currentTile.equals("flag")&& !currentTile.equals("under")&&!Panels.gameFunctions.lost)
 				{
 					
 					
-					if(labelUnderTile.getLabel().getIcon() != null) // If it's null the under it we have a number
-					{
-						img = (ImageIcon) getUnderTileLabel().getIcon();//this will be the bomb icon
-						frontTile.setIcon(img);
-					}
-					else
+					if(labelUnderTile.getLabel().getIcon() == null && labelUnderTile.getNumberHere() != 0 ) // If it's null the under it we have a bomb icon
 					{
 						ImageIcon t = new ImageIcon("images/image20x20/numbers/num"+Integer.toString(labelUnderTile.getNumberHere())+".png");
 						frontTile.setIcon(t);
+						moves++;
 					}
 					if(labelUnderTile.getNumberHere() == 0)
 					{
 						Panels.gameFunctions.revealEmptyStreak(row,column);
+						moves++;
 					}
 					currentTile = "under";
 					if(labelUnderTile.bombHere())
@@ -178,10 +168,16 @@ public class Tile {
 						
 						Panels.gameFunctions.revealBombs(row, column);
 						
+						Panels.mainButton.setIcon(new ImageIcon("images/image20x20/lostgame.png"));
 						Panels.setTimer(false);
 						Panels.gameFunctions.lost=true;
 					}
 					
+				}
+				System.out.println(moves);
+				if(moves == Panels.gameFunctions.gameColumns*Panels.gameFunctions.gameRows)
+				{
+					System.out.println("Won");
 				}
 			}
 
@@ -191,7 +187,6 @@ public class Tile {
 				if(currentTile.equals("flag") && !Panels.gameFunctions.lost)
 				{
 					frontTile.setIcon(questionMark);
-					bombFlags--;
 					Panels.setFlagsLabel(-1); //This makes the bomb counter label on the frame increase by one
 					currentTile = "question";
 				}
@@ -203,7 +198,6 @@ public class Tile {
 				else if(currentTile.equals("normalTile") && !Panels.gameFunctions.lost)
 				{
 					frontTile.setIcon(flag);
-					bombFlags++;
 					Panels.setFlagsLabel(1);//This makes the bomb counter label on the frame decrease by one
 					currentTile = "flag";
 				}
@@ -220,13 +214,23 @@ public class Tile {
 		public void mouseExited(MouseEvent arg0) {}
 
 		@Override
-		public void mousePressed(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {
+			
+			if(!Panels.gameFunctions.lost)
+			{
+				ImageIcon expectativeFace = new ImageIcon("images/image20x20/amir2.JPG");
+				Panels.mainButton.setIcon(expectativeFace);
+			}
+		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) 
 		{
 			if(!Panels.gameFunctions.lost)
-				System.out.println("Scary face is off");
+			{
+				ImageIcon buttonIcon = new ImageIcon("images/image20x20/startgame.png"); 
+				Panels.mainButton.setIcon(buttonIcon);
+			}
 		}
 
 		
