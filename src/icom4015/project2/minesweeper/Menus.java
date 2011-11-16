@@ -6,19 +6,24 @@ import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 public class Menus {
 
+	private JButton mainButton;
+	
 	private MenuBar menuBar;
 	private Menu game;
 	
 	private MenuItem newGame;
-
+	
 	private MenuItem beginner;
 	private MenuItem intermidiate;
 	private MenuItem expert;
 	private MenuItem custom;
-	
-	
+		
 	private MenuItem bestTimes;
 	
 	private MenuItem exit;
@@ -27,20 +32,31 @@ public class Menus {
 	
 	private int beginnerRows=9;
 	private int beginnerColumns=9;
+	private int beginnersBombs= 10;
 	
 	private int intermidiateRows=16;
 	private int intermidiateColumns=16;
+	private int intermidiateBombs = 40;
 	
 	private int expertRows=16;
-	private int expertColumns = 30; 
+	private int expertColumns = 30;
+	private int expertBombs = 99;
+	
+	private int customRows=0;
+	private int customColumns =0;
+	private int customBombs=0;
 	
 	/**
 	 * Create the menus that will appear on the frame.
 	 */
 	public Menus()
 	{
-		gL = new GameLevelListener();
+		
+		gL = new MenuAndButtonListener();
 		exitListener = new ExitListener();
+		
+		mainButton = new JButton();
+		mainButton.addActionListener(gL);
 		
 		menuBar = new MenuBar();
 		game = new Menu("Game");
@@ -93,15 +109,20 @@ public class Menus {
 		return menuBar;
 	}
 	
+	public JButton getMainButton()
+	{
+		return mainButton;
+	}
 	
-	private class GameLevelListener implements ActionListener
+	
+	private class MenuAndButtonListener implements ActionListener
 	{
 
 		
 		@Override
 		public void actionPerformed(ActionEvent arg) 
 		{
-			if(arg.getActionCommand().equals("    New"))
+			if(arg.getActionCommand().equals("    New") || arg.getSource() == mainButton)
 			{
 				if(beginner.getLabel().equals("\u2713  Beginner"))
 				{
@@ -115,6 +136,10 @@ public class Menus {
 				{
 					Minesweeper.setNewGame(expertRows, expertColumns,99);
 				}
+				else if(custom.getLabel().equals("\u2713  Custom..."))
+				{
+					Minesweeper.setNewGame(customRows, customColumns, customBombs);
+				}
 			}
 			
 			else if(arg.getActionCommand().equals("    Beginner"))
@@ -123,7 +148,7 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(beginnerRows,  beginnerColumns, 10);
+				Minesweeper.setNewGame(beginnerRows,  beginnerColumns, beginnersBombs);
 			}
 			else if(arg.getActionCommand().equals("    Intermidiate"))
 			{
@@ -131,7 +156,7 @@ public class Menus {
 				intermidiate.setLabel("\u2713  Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(intermidiateRows, intermidiateColumns, 40);
+				Minesweeper.setNewGame(intermidiateRows, intermidiateColumns, intermidiateBombs);
 				
 			}
 			else if(arg.getActionCommand().equals("    Expert"))
@@ -140,7 +165,7 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("\u2713  Expert");
 				custom.setLabel("    Custom...");
-				Minesweeper.setNewGame(expertRows, expertColumns, 99);
+				Minesweeper.setNewGame(expertRows, expertColumns, expertBombs);
 			
 			}
 			else if(arg.getActionCommand().equals("    Custom..."))
@@ -149,7 +174,18 @@ public class Menus {
 				intermidiate.setLabel("    Intermidiate");
 				expert.setLabel("    Expert");
 				custom.setLabel("\u2713  Custom...");
-				//Minesweeper.setNewGame(rows, columns);
+
+				String rows="0", columns="0", bombs="0";
+				
+				rows = JOptionPane.showInputDialog("Type rows: ");
+				columns = JOptionPane.showInputDialog("Type columns: ");
+				bombs = JOptionPane.showInputDialog("Bombs: ");
+				
+				customRows = Integer.parseInt(rows); // max 24
+				customColumns = Integer.parseInt(columns); // max 30
+				customBombs = Integer.parseInt(bombs); // max 667
+				
+				Minesweeper.setNewGame(customRows, customColumns, customBombs);
 		
 			}
 			

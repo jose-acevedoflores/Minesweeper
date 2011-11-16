@@ -1,5 +1,7 @@
 package icom4015.project2.minesweeper;
 
+import javax.swing.JButton;
+
 /**
  * Class designed to create the frame and present it to the user
  * @author 
@@ -10,6 +12,7 @@ public class Minesweeper {
 	private static Panels mainWindow = new Panels();
 	private static Menus menuBar = new Menus();
 	
+	
 	/**
 	 * Main method
 	 * @param args not used
@@ -17,7 +20,7 @@ public class Minesweeper {
 	public static void main(String[] args) 
 	{
 		//Sets a beginner level game
-		mainWindow.setPanels(9, 9, 10,menuBar);
+		mainWindow.setPanels(9, 9, 10, menuBar, menuBar.getMainButton());
 	}
 	
 	/**
@@ -29,7 +32,7 @@ public class Minesweeper {
 	{
 		mainWindow.dispose();
 		mainWindow = new Panels();
-		mainWindow.setPanels(row, column,  bombNumber,menuBar);
+		mainWindow.setPanels(row, column,  bombNumber,menuBar, menuBar.getMainButton());
 	}
 
 }

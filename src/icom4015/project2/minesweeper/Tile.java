@@ -165,7 +165,8 @@ public class Tile {
 					currentTile = "under";
 					if(labelUnderTile.bombHere())
 					{
-						System.out.println("Boooom");
+						frontTile.setIcon(new ImageIcon("images/image20x20/bomb-explode.png"));
+						
 						Panels.setTimer(false);
 						Panels.gameFunctions.lost=true;
 					}
