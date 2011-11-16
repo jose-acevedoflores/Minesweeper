@@ -185,7 +185,7 @@ public class Tile {
 					
 					try{
 						int time = Integer.parseInt(Panels.getTimerBomb().getTime());
-						System.out.println("time"+time);
+						
 						BestTimes.setBestTime(time, Panels.gameFunctions.difficulty);
 					}
 					catch (FileNotFoundException e)

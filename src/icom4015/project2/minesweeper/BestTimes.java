@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 
 public class BestTimes implements ActionListener {
 
@@ -40,7 +42,6 @@ public class BestTimes implements ActionListener {
 			difficultyNum = 2;
 		}
 		
-		System.out.println("diffnum"+difficultyNum );
 		
 		
 		int previousScore = Integer.parseInt(fileLines[difficultyNum]);
@@ -52,7 +53,6 @@ public class BestTimes implements ActionListener {
 			try{
 				for(int i = 0; i < 3; i++)
 				{
-					
 					out.println(fileLines[i]);
 				}
 			}
@@ -60,6 +60,7 @@ public class BestTimes implements ActionListener {
 			{
 				if(out != null)
 					out.close();
+				
 			}
 		}
 
@@ -69,13 +70,32 @@ public class BestTimes implements ActionListener {
 		
 	}
 	
-	
+	public static void getBestTimes() 
+	{
+		try 
+		{
+			Scanner in = new Scanner(bestTimesHistory);
+			
+			String[] fileLines = new String[3];
+			
+			for(int i = 0; i < 3; i++)
+			{
+				fileLines[i] = in.nextLine();
+			}
+			
+			JOptionPane.showMessageDialog(null, "Beginner best time: "+fileLines[0]
+					+"\nIntermidiate best time: "+fileLines[1] 
+					+"\nExpert best time: "+ fileLines[2]);
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	public void actionPerformed(ActionEvent arg) 
 	{
-		
-		System.out.println("here");
-		
+		BestTimes.getBestTimes();
 	}
 
 }
