@@ -29,14 +29,17 @@ public class Panels extends JFrame
 		timer = new Timer(1000, tb);
 		
 		setTitle("Minesweeper");
-		ImageIcon icon = new ImageIcon("images/mine-logo.png");
+		ImageIcon icon = new ImageIcon("images/image48x48/mine-logo.png");
 		setIconImage(icon.getImage());
 		setResizable(false);
 		JPanel timerAndBombPanel = new JPanel();
 		JPanel all = new JPanel();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500, 650);
+		
+		int frameWidth = row*20 + 40;
+		int frameHeight = column*20 +190;
+		setSize(frameWidth+20, frameHeight);
 
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
@@ -51,7 +54,7 @@ public class Panels extends JFrame
 
 		//Adding the timer and bombs left panel
 		timerAndBombPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		timerAndBombPanel.setMaximumSize(new Dimension(465,60));
+		timerAndBombPanel.setMaximumSize(new Dimension(frameWidth,60));
 		timerAndBombPanel.setLayout(new BorderLayout());//added line for layout
 		timerAndBombPanel.add(tb.getBombsLeft(), BorderLayout.WEST);
 		timerAndBombPanel.add(tb.timerText(), BorderLayout.EAST);//added for timer

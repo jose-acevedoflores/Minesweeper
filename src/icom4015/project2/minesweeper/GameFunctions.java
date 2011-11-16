@@ -41,14 +41,17 @@ public class GameFunctions {
 		frontTiles = new Tile[gameRows][gameColumns];
 		streak =  new boolean[gameRows][gameColumns];
 		num = new int[gameRows][gameColumns][1];
+		
+		int frameWidth = rows*20 + 40;
+		int frameHeight = columns*20 +40;
 	
 		playPanelFront = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelFront.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		playPanelFront.setMaximumSize(new Dimension(465, 465));
+		playPanelFront.setMaximumSize(new Dimension(frameWidth , frameHeight));
 		
 		playPanelBelow = new JPanel(new GridLayout(gameRows,gameColumns));
 		playPanelBelow.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		playPanelBelow.setMaximumSize(new Dimension(465, 465));
+		playPanelBelow.setMaximumSize(new Dimension(frameWidth , frameHeight));
 	}
 
 	/**
