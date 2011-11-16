@@ -167,6 +167,8 @@ public class Tile {
 					{
 						frontTile.setIcon(new ImageIcon("images/image20x20/bomb-explode.png"));
 						
+						
+						
 						Panels.setTimer(false);
 						Panels.gameFunctions.lost=true;
 					}

@@ -227,6 +227,14 @@ public class GameFunctions {
 		
 	}
 	
+	public void revealBombs()
+	{
+		mineGenerator.getBombLocations();
+		
+		
+		
+	}
+	
 	/**
 	 * This methods check's if a given number n is present in an ArrayList.
 	 * @param n the number to look in the arrayList.
