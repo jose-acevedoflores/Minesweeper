@@ -1,5 +1,6 @@
 package icom4015.project2.minesweeper;
 
+
 import java.awt.Dimension;
 
 import javax.swing.Box;
@@ -15,7 +16,7 @@ public class UnderLabelFrame {
 	public UnderLabelFrame(JPanel panel, int frameHeight, int frameWidth)
 	{
 		JFrame frame = new JFrame("Minesweeper");
-		ImageIcon icon = new ImageIcon("images/mine-logo.png");
+		ImageIcon icon = new ImageIcon("images/image48x48/mine-logo.png");
 		JPanel timerAndBombPanel = new JPanel();
 		JPanel all = new JPanel();
 		
@@ -25,10 +26,6 @@ public class UnderLabelFrame {
 		//Setting the look of the all panel.
 		all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
 		all.setBorder(new BevelBorder(BevelBorder.RAISED));
-		
-		//Setting the menus
-		Menus menuBar = new Menus();
-		frame.setMenuBar(menuBar.getMenuBar());
 		
 		
 		//Adding empty space between the menus and the timer panel.
