@@ -102,7 +102,7 @@ public class Panels extends JFrame
 		//UnderLabelFrame ulf = new UnderLabelFrame(gameFunctions.getUnderPanel(), frameHeight, frameWidth);
 
 		add(all);
-
+		setLocationRelativeTo(null);
 		setVisible(true);
 
 	}

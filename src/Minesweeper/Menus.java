@@ -96,7 +96,7 @@ public class Menus {
 		game.addSeparator();
 
 		bestTimes= new MenuItem("    Best Times...");
-		bestTimes.addActionListener(new BestTimes());
+		bestTimes.addActionListener(new BestTimes());//Best times is used in here
 		game.add(bestTimes);
 
 		game.addSeparator();
@@ -211,10 +211,16 @@ public class Menus {
 				try{
 					customRows = Math.min(Integer.parseInt(rows),  24); // max 24
 					customColumns = Math.min(Integer.parseInt(columns), 30); // max 30
-
+					
 					customBombs = Math.min(Integer.parseInt(bombs), 667); // max 667
 
 					customBombs = Math.max(customBombs, 10);//check if the user gave a negative or less than minimum bombs number as an input
+					
+					if(customRows <= 0 )
+						customRows = 9;
+					
+					if(customColumns <=0)
+						customColumns = 9;
 
 					//If the user gave more bombs than available spaces we subtract 40 bombs 
 					if(customRows*customColumns -40 < customBombs  )
