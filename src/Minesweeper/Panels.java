@@ -24,6 +24,10 @@ import javax.swing.border.BevelBorder;
 public class Panels extends JFrame
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static TimerBomb tb;
  	private static Timer timer;// This creates the timer
  	

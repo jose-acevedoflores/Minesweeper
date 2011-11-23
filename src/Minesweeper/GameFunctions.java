@@ -236,7 +236,8 @@ public class GameFunctions {
 		
 	}
 	
-	public void revealBombs(int thisBombRow, int thisBombColumn)
+	//When you lose we reveal the bombs
+	public void revealBombs(int thisGameRow, int thisGameColumn)
 	{
 		int[] bombLocations= mineGenerator.getBombLocations();
 		
@@ -246,15 +247,34 @@ public class GameFunctions {
 			{
 				for(int j =0 ; j < gameColumns ; j++)
 				{
-					if(num[i][j][0] == bombLocations[a] && !( i == thisBombRow && j ==thisBombColumn ))
+					if(num[i][j][0] == bombLocations[a] && !( i == thisGameRow && j ==thisGameColumn ))
 					{
 						frontTiles[i][j].setFrontTileOnLost();
 					}
 				}
 			}
 		}
-		
-		
+				
+	}
+	
+	//When you win the flags are added
+	public void flagBombsUponWin(int thisGameRow, int thisGameColumn)
+	{
+		int[] bombLocations= mineGenerator.getBombLocations();
+
+		for(int a = 0 ; a < bombLocations.length; a++)
+		{
+			for(int i = 0 ; i < gameRows ; i++)
+			{
+				for(int j =0 ; j < gameColumns ; j++)
+				{
+					if(num[i][j][0] == bombLocations[a] && !( i == thisGameRow && j ==thisGameColumn ))
+					{
+						frontTiles[i][j].setBombFrontTileOnWin();
+					}
+				}
+			}
+		}
 	}
 	
 	/**

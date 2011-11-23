@@ -120,11 +120,26 @@ public class Tile {
 		}
 	}
 	
+	/**
+	 * Sets the front tiles 
+	 */
 	public void setFrontTileOnLost()
 	{
 		if(labelUnderTile.getNumberHere() == -1)			
 		{	
 			frontTile.setIcon(labelUnderTile.getLabel().getIcon());
+			currentTile = "under";
+		}
+	}
+	
+	/**
+	 * Changes the bombs front tile to a flag if you won
+	 */
+	public void setBombFrontTileOnWin()
+	{
+		if(labelUnderTile.getNumberHere() == -1)			
+		{	
+			frontTile.setIcon(flag);
 			currentTile = "under";
 		}
 	}
@@ -175,10 +190,12 @@ public class Tile {
 					
 				}
 				
+				//If the player won
 				if(moves == (Panels.gameFunctions.gameColumns*Panels.gameFunctions.gameRows)- Panels.gameFunctions.mineGenerator.getHowManyBombs())
 				{
 					Panels.gameFunctions.won=true;
 					Panels.mainButton.setIcon(new ImageIcon("images/image48x48/wongame.png"));
+					Panels.gameFunctions.flagBombsUponWin(row, column);
 					Panels.setTimer(false);
 					
 					try{
