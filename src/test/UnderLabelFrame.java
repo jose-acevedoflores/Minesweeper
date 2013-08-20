@@ -1,4 +1,4 @@
-package icom4015.project2.minesweeper;
+package test;
 
 
 import java.awt.Dimension;
